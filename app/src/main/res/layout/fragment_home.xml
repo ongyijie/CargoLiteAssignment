@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
+    android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        android:isScrollContainer="false">
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -31,8 +33,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
@@ -56,7 +59,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="20dp"
                         app:srcCompat="@drawable/products_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -67,8 +70,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
@@ -116,8 +120,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
@@ -152,8 +157,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
@@ -177,7 +183,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="20dp"
                         app:srcCompat="@drawable/analytics_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -201,8 +207,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
@@ -226,7 +233,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="20dp"
                         app:srcCompat="@drawable/shipment_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -276,7 +283,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
