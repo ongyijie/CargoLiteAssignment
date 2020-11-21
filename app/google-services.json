@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "70747680827",
+    "firebase_url": "https://assignment-94fa4.firebaseio.com",
+    "project_id": "assignment-94fa4",
+    "storage_bucket": "assignment-94fa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70747680827:android:330b1f442e139888182c1e",
+        "android_client_info": {
+          "package_name": "com.example.assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ0Xs3BdZX_MsV9wGLlLFTlXJXKDx50fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70747680827:android:d6a24643d250c017182c1e",
+        "android_client_info": {
+          "package_name": "my.edu.tarc.cargolite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ0Xs3BdZX_MsV9wGLlLFTlXJXKDx50fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70747680827:android:c6036a555f0eca8a182c1e",
+        "android_client_info": {
+          "package_name": "my.edu.tarc.lightsensor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ0Xs3BdZX_MsV9wGLlLFTlXJXKDx50fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70747680827-g7cp4lv296l2au7d8tfq4fv6pmf49p8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
