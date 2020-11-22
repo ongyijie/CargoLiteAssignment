@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import my.edu.tarc.cargolite.Products
 import my.edu.tarc.cargolite.R
 import my.edu.tarc.cargolite.Scanner
 
@@ -17,6 +18,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var  cardViewScanner: CardView
+    private lateinit var cardViewProducts: CardView
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,19 +34,20 @@ class HomeFragment : Fragment() {
         })
 
         val cardViewScanner: CardView = root.findViewById(R.id.cardViewScanner)
+        val cardViewProducts: CardView = root.findViewById((R.id.cardViewProducts))
         cardViewScanner.setOnClickListener(clickListener)
+        cardViewProducts.setOnClickListener(clickListener)
 
         return root
     }
 
     private val clickListener: View.OnClickListener = View.OnClickListener { view ->
-        when (view.id) {
-            R.id.cardViewScanner -> callIntent()
-        }
-    }
+        val intentScanner = Intent(this@HomeFragment.context, Scanner::class.java)
+        val intentProducts = Intent(this@HomeFragment.context, Products::class.java)
 
-    private fun callIntent() {
-        val intent = Intent(this@HomeFragment.context, Scanner::class.java)
-        startActivity(intent)
+        when (view.id) {
+            R.id.cardViewScanner -> startActivity(intentScanner)
+            R.id.cardViewProducts -> startActivity(intentProducts)
+        }
     }
 }

@@ -19,4 +19,11 @@
     <string name="RegisterButton">Register</string>
     <string name="email">email</string>
     <string name="phoneNumber">phone number</string>
+    <string name="add_product">Add new product</string>
+    <string name="hint_productname">Product name</string>
+    <string name="hint_productID">Product ID</string>
+    <string name="hint_productlocation">Product location (shelf level, number etc)</string>
+    <string name="hint_productQuantity">Product quantity</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>
