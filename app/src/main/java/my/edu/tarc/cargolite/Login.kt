@@ -44,17 +44,19 @@ class Login : AppCompatActivity() {
                 email1.error = "Email is required"
                 status = "false"
             }
-            if (TextUtils.isEmpty(password) || (password.length <= 6)) {
-                password1.error = "Password must be more than 6 characters"
+            if (TextUtils.isEmpty(password)) {
+                password1.error = "Password is required"
                 status = "false"
             }
             if (status=="true") {
                 progressBar.setVisibility(View.VISIBLE)
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        progressBar.setVisibility(View.GONE)
                         Toast.makeText(baseContext, "Signed in successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
+                        progressBar.setVisibility(View.GONE)
                         Toast.makeText(baseContext, "Sign in failed, please try again", Toast.LENGTH_SHORT).show()
                     }
                 }
