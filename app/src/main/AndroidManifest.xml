@@ -17,7 +17,8 @@
         android:theme="@style/Theme.CargoLite">
         <activity android:name=".Scanner"/>
         <activity android:name=".Products"
-            android:label="Products" />
+            android:label="Products"
+            android:parentActivityName="my.edu.tarc.cargolite.MainActivity"/>
         <activity
             android:name=".Register"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

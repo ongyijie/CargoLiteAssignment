@@ -29,7 +29,7 @@
         android:drawableLeft="@drawable/password"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:hint="@string/password"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

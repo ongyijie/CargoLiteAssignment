@@ -1,19 +1,27 @@
 package my.edu.tarc.cargolite
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.dialog_addproduct.view.*
+
 
 class Products: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
+
+        //Enabling up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fab_add: FloatingActionButton = findViewById(R.id.fab_add)
 
@@ -29,25 +37,57 @@ class Products: AppCompatActivity() {
             val  mAlertDialog = myBuilder.show()
             val productList = ArrayList<String>(5)
 
-            val textViewProduct: TextView = findViewById(R.id.textViewProduct)
+            val textViewProducts: TextView = findViewById(R.id.textViewProducts)
             //Add button click of custom layout
             DialogView.dialogAddBtn.setOnClickListener {
                 //Dismiss dialog
                 mAlertDialog.dismiss()
 
                 //Show snackbar
-                val snackBar = Snackbar.make(findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
+                val snackBar = Snackbar.make(
+                    findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
                 ).setAction("Action", null)
                 snackBar.show()
 
                 //Get text from EditTexts of custom layout
-                val product_id = DialogView.dialogIDEt.text.toString()
-                val product_name = DialogView.dialogNameEt.text.toString()
-                val unit_price = DialogView.dialogPriceEt.text.toString()
-                val stock_location = DialogView.dialogLocationEt.text.toString()
+                val productID = DialogView.dialogIDEt.text.toString()
+                val productName = DialogView.dialogNameEt.text.toString()
+                val unitPrice = DialogView.dialogPriceEt.text.toString()
+                val stockLocation = DialogView.dialogLocationEt.text.toString()
                 val quantity = DialogView.dialogQuantityEt.text.toString()
 
-                textViewProduct.text = String.format("%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s", "Product ID: ", product_id, "Product Name: ", product_name, "Unit price (RM) :", unit_price, "Stock location :", stock_location, "Quantity: ", quantity)
+                //Defining database
+                val database = Firebase.firestore
+
+                val product = hashMapOf(
+                    "productID" to productID,
+                    "productName" to productName,
+                    "unitPrice" to unitPrice,
+                    "stockLocation" to stockLocation,
+                    "quantity" to quantity
+                )
+
+                database.collection("products")
+                        .add(product)
+                        .addOnSuccessListener { documentReference ->
+                        Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+                        }
+                        .addOnFailureListener { e ->
+                        Log.w("TAG", "Error adding document", e)
+                        }
+                textViewProducts.text = String.format(
+                    "%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s",
+                    "Product ID: ",
+                    productID,
+                    "Product Name: ",
+                    productName,
+                    "Unit price (RM) :",
+                    unitPrice,
+                    "Stock location :",
+                    stockLocation,
+                    "Quantity: ",
+                    quantity
+                )
             }
 
             //Cancel button click of custom layout

@@ -87,6 +87,10 @@ class Scanner : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
+
+        //Enabling up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         scanCode()
 //        val scanner = IntentIntegrator(this)
 //        scanner.initiateScan()

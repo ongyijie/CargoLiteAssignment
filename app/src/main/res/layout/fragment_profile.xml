@@ -45,9 +45,8 @@
                 android:id="@+id/imageViewProfilePic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/empty"
                 android:layout_gravity="center"
-                android:layout_centerInParent="true"
+                android:src="@drawable/empty"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </RelativeLayout>
@@ -73,26 +72,15 @@
         app:barrierDirection="left" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/userID"
+        android:layout_marginTop="86dp"
+        android:text="@string/userName"
         android:textColor="@color/brown"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/cardViewProfile" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/username"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -113,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/email"
+        android:text="@string/Username"
         android:textColor="@color/brown"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -124,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/password"
+        android:text="@string/Password"
         android:textColor="@color/brown"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -142,26 +130,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textViewUserID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewProfile" />
-
-    <TextView
         android:id="@+id/textViewUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="86dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserID" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewProfile" />
 
     <TextView
         android:id="@+id/textViewEmail"
