@@ -3,7 +3,6 @@ package my.edu.tarc.cargolite
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,13 +46,6 @@ class Products: AppCompatActivity() {
                 val unit_price = DialogView.dialogPriceEt.text.toString()
                 val stock_location = DialogView.dialogLocationEt.text.toString()
                 val quantity = DialogView.dialogQuantityEt.text.toString()
-
-               /* val product_list: MutableList<String> = ArrayList()
-                productList.add(product_id)
-                productList.add(product_name)
-                productList.add(unit_price)
-                productList.add(stock_location)
-                productList.add(quantity)*/
 
                 textViewProduct.text = String.format("%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s \n%20s %10s", "Product ID: ", product_id, "Product Name: ", product_name, "Unit price (RM) :", unit_price, "Stock location :", stock_location, "Quantity: ", quantity)
             }
