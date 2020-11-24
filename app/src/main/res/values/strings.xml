@@ -12,17 +12,11 @@
     <string name="app_desc">Your Warehouse Assistant</string>
     <string name="logo">Logo</string>
     <string name="title_activity_login">Login</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
+    <string name="Username">username</string>
+    <string name="Password">password</string>
     <string name="LoginButton">LOGIN</string>
     <string name="retypePassword">retype password</string>
     <string name="RegisterButton">Register</string>
-    <string name="email">Email</string>
+    <string name="email">email</string>
     <string name="phoneNumber">phone number</string>
-    <string name="userID">UserID</string>
-    <string name="position">Position</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="oldPassword">Old Password</string>
-    <string name="newPassword">New Password</string>
-    <string name="confirmPassword">Confirm Password</string>
 </resources>

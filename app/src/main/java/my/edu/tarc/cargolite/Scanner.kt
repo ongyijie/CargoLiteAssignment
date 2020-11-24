@@ -124,7 +124,7 @@ class Scanner : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setMessage(result.contents)
                 builder.setTitle("Scanning Results")
-                builder.setPositiveButton("Scan Again") { dialog, which -> scanCode() }.setNegativeButton("finish") { dialog, which -> finish() }
+                builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                 val dialog = builder.create()
                 dialog.show()
             } else {
