@@ -33,4 +33,5 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="position">Position</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="error_value_required">Value required</string>
 </resources>
