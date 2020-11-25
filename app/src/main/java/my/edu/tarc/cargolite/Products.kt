@@ -3,9 +3,13 @@ package my.edu.tarc.cargolite
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -17,12 +21,12 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.dialog_addproduct.view.*
 
+
 class Products : AppCompatActivity() {
 
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionRef: CollectionReference = database.collection("products")
     var productAdapter: ProductAdapter? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +37,7 @@ class Products : AppCompatActivity() {
 
         setUpRecyclerView()
 
-       val fab_add: FloatingActionButton = findViewById(R.id.fab_add)
+        val fab_add: FloatingActionButton = findViewById(R.id.fab_add)
 
         //Button click to show dialog
         fab_add.setOnClickListener {
@@ -67,7 +71,7 @@ class Products : AppCompatActivity() {
                         "productQuantity" to productQuantity
                 )
 
-                database.collection("products").document("$productID")
+                collectionRef.document("$productID")
                         .set(product)
                         .addOnSuccessListener { documentReference ->
                             Log.d("TAG", "DocumentSnapshot added")
@@ -99,13 +103,37 @@ class Products : AppCompatActivity() {
     fun setUpRecyclerView() {
         val query: Query = collectionRef
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<ProductModel> = FirestoreRecyclerOptions.Builder<ProductModel>()
-            .setQuery(query, ProductModel::class.java)
-            .build()
+                .setQuery(query, ProductModel::class.java)
+                .build()
 
         productAdapter = ProductAdapter(firestoreRecyclerOptions)
 
         recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerview.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerview.adapter = productAdapter
+
+        //Credits: Coding In FLow https://www.youtube.com/watch?v=dTuhMFP-a1g
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT) {
+
+            override fun getSwipeEscapeVelocity(defaultValue: Float): Float {
+                return defaultValue * 10   //Reduce swipe sensitivity
+            }
+
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                productAdapter!!.deleteItem(viewHolder.adapterPosition)
+                val snackBar = Snackbar.make(
+                        findViewById(R.id.ConstraintLayout), "Product deleted", Snackbar.LENGTH_LONG
+                ).setAction("Undo", View.OnClickListener {
+                    //Todo: undo
+                })
+                snackBar.show()
+            }
+        }).attachToRecyclerView(recyclerview)
     }
 
     override fun onStart() {
@@ -118,3 +146,4 @@ class Products : AppCompatActivity() {
         productAdapter!!.stopListening()
     }
 }
+

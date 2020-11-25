@@ -18,6 +18,10 @@ FirestoreRecyclerAdapter<ProductModel, ProductAdapter.ProductAdapterViewHolder>(
         return ProductAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.product_list, parent, false))
     }
 
+    fun deleteItem(position: Int) {
+        snapshots.getSnapshot(position).reference.delete()
+    }
+
     override fun onBindViewHolder(holder: ProductAdapterViewHolder, position: Int, model: ProductModel) {
         holder.productID.text = model.productID
         holder.productName.text = model.productName
