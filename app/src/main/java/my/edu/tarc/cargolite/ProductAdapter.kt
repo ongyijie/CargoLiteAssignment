@@ -2,6 +2,7 @@
 
 package my.edu.tarc.cargolite
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import kotlinx.android.synthetic.main.product_list.view.*
 class ProductAdapter(options: FirestoreRecyclerOptions<ProductModel>):
 FirestoreRecyclerAdapter<ProductModel, ProductAdapter.ProductAdapterViewHolder>(options) {
 
+    private val myProducts: List<String>? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapterViewHolder {
         return ProductAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.product_list, parent, false))
     }
@@ -25,9 +28,9 @@ FirestoreRecyclerAdapter<ProductModel, ProductAdapter.ProductAdapterViewHolder>(
     override fun onBindViewHolder(holder: ProductAdapterViewHolder, position: Int, model: ProductModel) {
         holder.productID.text = model.productID
         holder.productName.text = model.productName
-        holder.productPrice.text = ("Price (RM): " + model.productPrice)
-        holder.productLocation.text = ("Location: " + model.productLocation)
-        holder.productQuantity.text = ("Quantity: " + model.productQuantity)
+        holder.productPrice.text = model.productPrice
+        holder.productLocation.text = model.productLocation
+        holder.productQuantity.text = model.productQuantity
     }
 
     class ProductAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

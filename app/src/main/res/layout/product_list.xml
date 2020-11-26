@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
     android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
     android:layout_marginEnd="5dp"
-    android:backgroundTint="@color/lightbrown">
+    android:backgroundTint="@color/lightbrown"
+    android:clickable="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,13 +34,25 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/textViewPriceField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fieldname_price" />
+
+        <TextView
             android:id="@+id/textViewPrice"
             style="@style/Widget.AppCompat.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewLocField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fieldname_location" />
 
         <TextView
             android:id="@+id/textViewLocation"
@@ -49,7 +61,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewQtyField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fieldname_qty" />
 
         <TextView
             android:id="@+id/textViewQuantity"
@@ -58,7 +76,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 

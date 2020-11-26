@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
         val cardViewScanner: CardView = root.findViewById(R.id.cardViewScanner)
         val cardViewProducts: CardView = root.findViewById((R.id.cardViewProducts))
         val cardViewStock: CardView = root.findViewById(R.id.cardViewStock)

@@ -34,6 +34,14 @@
     <string name="position">Position</string>
     <string name="edit_profile">Edit profile</string>
     <string name="error_value_required">Value required</string>
+    <string name="logout">Log Out</string>
+    <string name="fieldname_price">Price (RM):</string>
+    <string name="fieldname_location">Product location:</string>
+    <string name="fieldname_qty">Quantity:</string>
+    <string name="dialogLogout">Log Out</string>
+    <string name="messageLogout">Are you sure?</string>
+    <string name="dialogDelete">WARNING: Delete product</string>
+    <string name="messageDelete">Are you sure? This action is irreversible.</string>
     <string name="stockIn">Stock In</string>
     <string name="stockOut">Stock Out</string>
     <string name="noStock">Out Of Stock</string>
