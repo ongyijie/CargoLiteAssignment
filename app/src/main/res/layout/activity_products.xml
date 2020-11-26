@@ -35,10 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray"
+        android:clickable="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchbar"
-        tools:listitem="@layout/product_list" />
+        tools:listitem="@layout/product_list"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

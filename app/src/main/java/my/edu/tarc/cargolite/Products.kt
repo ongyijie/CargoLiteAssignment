@@ -1,11 +1,13 @@
 package my.edu.tarc.cargolite
 
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.SearchView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.dialog_addproduct.view.*
 
@@ -55,39 +58,67 @@ class Products : AppCompatActivity() {
 
                 //Get text from EditTexts of custom layout
                 val productID = DialogView.dialogIDEt.text.toString()
-                val productName = DialogView.dialogNameEt.text.toString()
-                val productPrice = DialogView.dialogPriceEt.text.toString()
-                val productLocation = DialogView.dialogLocationEt.text.toString()
-                val productQuantity = DialogView.dialogQuantityEt.text.toString()
+                val productName = DialogView.dialogNameEt.text.toString().trim()
+                val productPrice = DialogView.dialogPriceEt.text.toString().trim()
+                val productLocation = DialogView.dialogLocationEt.text.toString().trim()
+                val productQuantity = DialogView.dialogQuantityEt.text.toString().trim()
 
-                val product = hashMapOf(
-                        "productID" to productID,
-                        "productName" to productName,
-                        "productPrice" to productPrice,
-                        "productLocation" to productLocation,
-                        "productQuantity" to productQuantity
-                )
+                if (productID.isEmpty()) {
+                    DialogView.dialogIDEt.error = "Name is required!"
+                    DialogView.dialogIDEt.requestFocus()
+                }
 
-                collectionRef.document("$productID")
-                        .set(product)
-                        .addOnSuccessListener { documentReference ->
-                            Log.d("TAG", "DocumentSnapshot added")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("TAG", "Error adding document", e)
-                        }
-                        .addOnFailureListener { exception ->
-                            Log.d("TAG", "get failed with ", exception)
-                        }
+                    if (productName.isEmpty()) {
+                        DialogView.dialogNameEt.error = "Name is required!"
+                        DialogView.dialogNameEt.requestFocus()
+                    }
 
-                //Dismiss dialog
-                mAlertDialog.dismiss()
+                    if (productPrice.isEmpty()) {
+                        DialogView.dialogPriceEt.error = "Price is required!"
+                        DialogView.dialogPriceEt.requestFocus()
+                    }
 
-                //Show snackbar
-                val snackBar = Snackbar.make(
-                        findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
-                ).setAction("Action", null)
-                snackBar.show()
+                    if (productLocation.isEmpty()) {
+                        DialogView.dialogLocationEt.error = "Location is required!"
+                        DialogView.dialogLocationEt.requestFocus()
+                    }
+
+                    if (productQuantity.isEmpty()) {
+                        DialogView.dialogQuantityEt.error = "Quantity is required!"
+                        DialogView.dialogQuantityEt.requestFocus()
+                    }
+
+                var flag = productID.isNotEmpty() && productName.isNotEmpty() && productPrice.isNotEmpty() && productLocation.isNotEmpty() && productQuantity.isNotEmpty()
+                if (flag) {
+                    val product = hashMapOf(
+                            "productID" to productID,
+                            "productName" to productName,
+                            "productPrice" to productPrice,
+                            "productLocation" to productLocation,
+                            "productQuantity" to productQuantity
+                    )
+
+                    collectionRef.document("$productID")
+                            .set(product)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d("TAG", "DocumentSnapshot added")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("TAG", "Error adding document", e)
+                            }
+                            .addOnFailureListener { exception ->
+                                Log.d("TAG", "get failed with ", exception)
+                            }
+
+                    //Show snackbar
+                    val snackBar = Snackbar.make(
+                            findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
+                    ).setAction("Action", null)
+                    snackBar.show()
+
+                    //Dismiss dialog
+                    mAlertDialog.dismiss()
+                }
             }
             //Cancel button click of custom layout
             DialogView.dialogCancelBtn.setOnClickListener {
@@ -137,6 +168,16 @@ class Products : AppCompatActivity() {
                     productAdapter!!.notifyDataSetChanged()
                 }
                 builder.show()
+            }
+
+            //Credits: yoursTRULY https://www.youtube.com/watch?v=rcSNkSJ624U
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                        .addBackgroundColor(ContextCompat.getColor(this@Products, R.color.red))
+                        .addActionIcon(R.drawable.ic_baseline_delete_24)
+                        .create()
+                        .decorate()
             }
         }).attachToRecyclerView(recyclerview)
     }
