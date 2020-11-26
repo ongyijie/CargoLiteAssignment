@@ -1,5 +1,6 @@
 package my.edu.tarc.cargolite.ui.settings
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,9 +32,19 @@ class SettingsFragment: Fragment() {
 
         val buttonLogout: Button = root.findViewById(R.id.buttonLogout)
         buttonLogout.setOnClickListener {
-            val intentLogin = Intent(this@SettingsFragment.context, Login::class.java)
-            intentLogin.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK    //Prevent back button after logout
-            startActivity(intentLogin)
+
+            val builder = AlertDialog.Builder(this@SettingsFragment.context)
+            builder.setTitle(R.string.dialogLogout)
+            builder.setMessage(R.string.messageLogout)
+            builder.setPositiveButton("Yes") { dialog, which ->
+                val intentLogin = Intent(this@SettingsFragment.context, Login::class.java)
+                intentLogin.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK    //Prevent back button after logout
+                startActivity(intentLogin)
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
         }
         return root
     }

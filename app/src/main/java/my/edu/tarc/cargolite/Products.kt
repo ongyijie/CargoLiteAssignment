@@ -3,7 +3,7 @@ package my.edu.tarc.cargolite
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
+import android.widget.SearchView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,14 +16,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.dialog_addproduct.view.*
 
 
 class Products : AppCompatActivity() {
 
+    //Defining database
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionRef: CollectionReference = database.collection("products")
     var productAdapter: ProductAdapter? = null
@@ -38,6 +37,7 @@ class Products : AppCompatActivity() {
         setUpRecyclerView()
 
         val fab_add: FloatingActionButton = findViewById(R.id.fab_add)
+        var searchBar: SearchView = findViewById(R.id.searchbar)
 
         //Button click to show dialog
         fab_add.setOnClickListener {
@@ -59,9 +59,6 @@ class Products : AppCompatActivity() {
                 val productPrice = DialogView.dialogPriceEt.text.toString()
                 val productLocation = DialogView.dialogLocationEt.text.toString()
                 val productQuantity = DialogView.dialogQuantityEt.text.toString()
-
-                //Defining database
-                val database = Firebase.firestore
 
                 val product = hashMapOf(
                         "productID" to productID,
@@ -101,9 +98,9 @@ class Products : AppCompatActivity() {
     }
 
     fun setUpRecyclerView() {
-        val query: Query = collectionRef
+        val query1: Query = collectionRef
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<ProductModel> = FirestoreRecyclerOptions.Builder<ProductModel>()
-                .setQuery(query, ProductModel::class.java)
+                .setQuery(query1, ProductModel::class.java)
                 .build()
 
         productAdapter = ProductAdapter(firestoreRecyclerOptions)
@@ -125,13 +122,21 @@ class Products : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                productAdapter!!.deleteItem(viewHolder.adapterPosition)
-                val snackBar = Snackbar.make(
-                        findViewById(R.id.ConstraintLayout), "Product deleted", Snackbar.LENGTH_LONG
-                ).setAction("Undo", View.OnClickListener {
-                    //Todo: undo
-                })
-                snackBar.show()
+                val builder = android.app.AlertDialog.Builder(this@Products)
+                builder.setTitle(R.string.dialogDelete)
+                builder.setMessage(R.string.messageDelete)
+                builder.setPositiveButton("Yes") { dialog, which ->
+                    productAdapter!!.deleteItem(viewHolder.adapterPosition)
+                    val snackBar = Snackbar.make(
+                            findViewById(R.id.ConstraintLayout), "Product deleted", Snackbar.LENGTH_LONG
+                    ).setAction("Action", null)
+                    snackBar.show()
+                }
+                builder.setNegativeButton("No") { dialog, which ->
+                    dialog.dismiss()
+                    productAdapter!!.notifyDataSetChanged()
+                }
+                builder.show()
             }
         }).attachToRecyclerView(recyclerview)
     }
