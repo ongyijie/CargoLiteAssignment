@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
         val cardViewScanner: CardView = root.findViewById(R.id.cardViewScanner)
         val cardViewProducts: CardView = root.findViewById((R.id.cardViewProducts))
         cardViewScanner.setOnClickListener(clickListener)
