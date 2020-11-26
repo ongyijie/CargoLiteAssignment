@@ -43,6 +43,7 @@ class Products : AppCompatActivity() {
         fab_add.setOnClickListener {
             //Inflate the dialog with custom view
             val DialogView = LayoutInflater.from(this).inflate(R.layout.dialog_addproduct, null)
+
             //AlertDialogBuilder
             val myBuilder = AlertDialog.Builder(this)
                     .setView(DialogView)
