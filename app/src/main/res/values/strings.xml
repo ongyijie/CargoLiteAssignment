@@ -42,4 +42,8 @@
     <string name="messageLogout">Are you sure?</string>
     <string name="dialogDelete">WARNING: Delete product</string>
     <string name="messageDelete">Are you sure? This action is irreversible.</string>
+    <string name="stockIn">Stock In</string>
+    <string name="stockOut">Stock Out</string>
+    <string name="noStock">Out Of Stock</string>
+    <string name="shipmentHistory">Shipment History</string>
 </resources>
