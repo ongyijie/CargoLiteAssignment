@@ -34,4 +34,8 @@
     <string name="position">Position</string>
     <string name="edit_profile">Edit profile</string>
     <string name="error_value_required">Value required</string>
+    <string name="stockIn">Stock In</string>
+    <string name="stockOut">Stock Out</string>
+    <string name="noStock">Out Of Stock</string>
+    <string name="shipmentHistory">Shipment History</string>
 </resources>
