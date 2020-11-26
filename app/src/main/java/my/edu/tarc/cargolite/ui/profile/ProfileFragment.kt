@@ -49,8 +49,7 @@ class ProfileFragment : Fragment() {
                     val passwordOld : TextView = root.findViewById(R.id.passwordOld)
                     val passwordNew : TextView = root.findViewById(R.id.passwordNew)
                     val passwordConfirm : TextView = root.findViewById(R.id.passwordConfirm)
-                    //When user click update, update the database
-                    //code for update database
+
                     //validate password update
                     val pswOld = passwordOld.text.toString()
                     val pswNew = passwordNew.text.toString()
@@ -64,6 +63,10 @@ class ProfileFragment : Fragment() {
                         passwordNew.error = "This is a required field"
                         status = "false"
                     }
+                    if (TextUtils.isEmpty(pswCon)) {
+                        passwordConfirm.error = "This is a required field"
+                        status = "false"
+                    }
                     if (pswNew == pswOld) {
                         passwordNew.error = "New password cannot be the same as old password"
                         status = "false"
@@ -72,8 +75,8 @@ class ProfileFragment : Fragment() {
                         passwordConfirm.error = "Password doesn't match!"
                         status = "false"
                     }
-                    //close the dialog
-                    dialog.cancel()
+                    //When user click update, update the database
+                    //code for update database
                 })
                 setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _->
                     //When user click cancel,close the dialog

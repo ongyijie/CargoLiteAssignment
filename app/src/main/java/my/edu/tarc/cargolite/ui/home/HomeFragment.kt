@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import my.edu.tarc.cargolite.Products
 import my.edu.tarc.cargolite.R
 import my.edu.tarc.cargolite.Scanner
+import my.edu.tarc.cargolite.Stock
 
 class HomeFragment : Fragment() {
 
@@ -34,8 +35,10 @@ class HomeFragment : Fragment() {
         })
         val cardViewScanner: CardView = root.findViewById(R.id.cardViewScanner)
         val cardViewProducts: CardView = root.findViewById((R.id.cardViewProducts))
+        val cardViewStock: CardView = root.findViewById(R.id.cardViewStock)
         cardViewScanner.setOnClickListener(clickListener)
         cardViewProducts.setOnClickListener(clickListener)
+        cardViewStock.setOnClickListener(clickListener)
 
         return root
     }
@@ -43,10 +46,12 @@ class HomeFragment : Fragment() {
     private val clickListener: View.OnClickListener = View.OnClickListener { view ->
         val intentScanner = Intent(this@HomeFragment.context, Scanner::class.java)
         val intentProducts = Intent(this@HomeFragment.context, Products::class.java)
+        val intentStock = Intent(this@HomeFragment.context, Stock::class.java)
 
         when (view.id) {
             R.id.cardViewScanner -> startActivity(intentScanner)
             R.id.cardViewProducts -> startActivity(intentProducts)
+            R.id.cardViewStock -> startActivity(intentStock)
         }
     }
 }
