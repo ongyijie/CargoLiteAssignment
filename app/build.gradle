@@ -63,4 +63,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.mcxiaoke.volley:library-aar:1.0.0'
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }

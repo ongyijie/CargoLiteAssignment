@@ -1,7 +1,6 @@
 package my.edu.tarc.cargolite.ui.profile
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -14,12 +13,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.edit_profile_dialog.view.*
 import my.edu.tarc.cargolite.R
 
+
 class ProfileFragment : Fragment() {
 
+    //Global variable
     private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -34,7 +38,6 @@ class ProfileFragment : Fragment() {
         profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
         //Link UI to program
         val fab_editProfile: FloatingActionButton = root.findViewById(R.id.fab_editProfile)
 
@@ -89,7 +92,7 @@ class ProfileFragment : Fragment() {
                 }
                 if (isValid == "true") {
                     //Update to firestore
-
+                    updatePassword(pswOld,pswNew)
                     Toast.makeText(getActivity(), "Validation Success", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
@@ -103,36 +106,25 @@ class ProfileFragment : Fragment() {
         }
         return root
     }//end of View
-/*
-    fun updatePassword() {
-        //var user = firebase.auth().currentUser;
-        //var newPassword = getASecureRandomPassword();
 
-        //user.updatePassword(newPassword).then(function() {
-            // Update successful.
-        //}).catch(function(error) {
-            // An error happened.
-        //});
-        Toast.makeText(getActivity(), "Validation Success", Toast.LENGTH_SHORT).show()
+    fun updatePassword(pswOld: String, pswNew: String) {
+        val firebaseUser = FirebaseAuth.getInstance().getCurrentUser()
+        val authCredential = EmailAuthProvider.getCredential(firebaseUser?.email.toString(), pswOld)
+        firebaseUser!!.reauthenticate(authCredential)
+                .addOnSuccessListener { task ->
+                    //Re-authenticate success
+                   firebaseUser.updatePassword(pswNew)
+                           .addOnSuccessListener {
+                               //password updated at firebase
+                               Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show()
+                           }
+                           .addOnFailureListener {
+                               Toast.makeText(getActivity(), "Update Failed. Please try again.", Toast.LENGTH_SHORT).show()
+                           }
+                }
+                .addOnFailureListener {
+                    //Re-authenticate failed
+                    Toast.makeText(getActivity(), "Authentication Failed. Please try again.", Toast.LENGTH_SHORT).show()
+                }
     }
- */
 }//end of class
-
-
-/*
-//Inflate edit Profile dialog with a custom view
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.edit_profile_dialog, null)
-            //start of alert dialog builder
-            val editBuilder = AlertDialog.Builder(this).setView(dialogView).setTitle("Edit Profile")
-            //display dialog
-            editBuilder.show()
-----------------------------------------------------------
-var user = firebase.auth().currentUser;
-                        var newPassword = getASecureRandomPassword();
-
-                        user.updatePassword(newPassword).then(function() {
-                            // Update successful.
-                        }).catch(function(error) {
-                            // An error happened.
-                        });
- */
