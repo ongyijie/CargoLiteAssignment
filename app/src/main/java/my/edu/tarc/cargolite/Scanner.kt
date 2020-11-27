@@ -136,9 +136,18 @@ class Scanner : AppCompatActivity() {
                                 val update = hashMapOf("productQuantity" to updatedQty.toString())
                                 docRef.set(update, SetOptions.merge())
                             } else if (shipmentType == "0") {
-                                updatedQty = currentQty!!.toInt() - quantity
-                                val update = hashMapOf("productQuantity" to updatedQty.toString())
-                                docRef.set(update, SetOptions.merge())
+                                if (quantity > currentQty!!.toInt()) {
+                                    val builder = AlertDialog.Builder(this)
+                                    builder.setMessage("Insufiicient stock")
+                                    builder.setTitle("Inventory Alert")
+                                    builder.setPositiveButton("Noted") { dialog, which -> finish() }
+                                    val dialog = builder.create()
+                                    dialog.show()
+                                } else {
+                                    updatedQty = currentQty!!.toInt() - quantity
+                                    val update = hashMapOf("productQuantity" to updatedQty.toString())
+                                    docRef.set(update, SetOptions.merge())
+                                }
                             }
 
                         } else {

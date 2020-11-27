@@ -1,9 +1,13 @@
 package my.edu.tarc.cargolite
 
+import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -133,7 +137,7 @@ class Products : AppCompatActivity() {
                 mAlertDialog.dismiss()
             }
         }
-    }
+    }//end of onCreate
 
    /* fun searchInDatabase(searchText: String) {
         val query: Query = collectionRef.orderBy("productName").startAt(searchText).endAt("searchText\uf8ff")
@@ -200,7 +204,7 @@ class Products : AppCompatActivity() {
                         .decorate()
             }
         }).attachToRecyclerView(recyclerview)
-    }
+    }//end of fun setUpRecyclerView
 
     override fun onStart() {
         super.onStart()
@@ -211,5 +215,17 @@ class Products : AppCompatActivity() {
         super.onDestroy()
         productAdapter!!.stopListening()
     }
-}
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.product_action_bar_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.scanner -> startActivity(Intent(this,Scanner::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+}//end of class
 

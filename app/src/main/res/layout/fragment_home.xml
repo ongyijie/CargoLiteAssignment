@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:background="@color/gray"
             android:orientation="horizontal"
             android:padding="10dp"
@@ -31,7 +31,10 @@
                 android:id="@+id/cardViewProducts"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -63,49 +66,12 @@
                         app:srcCompat="@drawable/products_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewScanner"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="12dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/textViewScanner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/imageViewScanner"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="serif"
-                        android:gravity="center"
-                        android:text="@string/scanner"
-                        android:textSize="22sp" />
-
-                    <ImageView
-                        android:id="@+id/imageViewScanner"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/scanner_icon" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:background="@color/gray"
             android:orientation="horizontal"
             android:padding="10dp"
@@ -115,10 +81,108 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewStock"
+                android:id="@+id/cardViewStockIn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/imageViewStockIn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        app:srcCompat="@drawable/stockin_icon" />
+
+                    <TextView
+                        android:id="@+id/textViewStockIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageViewStockIn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="serif"
+                        android:text="@string/stockIn"
+                        android:textColor="@color/brown"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewStockOut"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/imageViewStockOut"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        app:srcCompat="@drawable/stockout_icon" />
+
+                    <TextView
+                        android:id="@+id/textViewStockOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageViewStockOut"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="serif"
+                        android:text="@string/stockOut"
+                        android:textColor="@color/brown"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:background="@color/gray"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewShipmentHistory"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -131,23 +195,25 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/textViewStock"
+                        android:id="@+id/textViewShipmentHistory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageViewStock"
-                        android:layout_marginTop="0dp"
+                        android:layout_below="@id/imageViewShipmentHistory"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="serif"
                         android:gravity="center"
-                        android:text="@string/stock"
-                        android:textSize="20sp" />
+                        android:text="@string/shipmentHistory"
+                        android:textColor="@color/brown"
+                        android:textSize="18sp" />
 
                     <ImageView
-                        android:id="@+id/imageViewStock"
+                        android:id="@+id/imageViewShipmentHistory"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/stock_icon" />
+                        app:srcCompat="@drawable/shipment_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -155,7 +221,10 @@
                 android:id="@+id/cardViewAnalytics"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -176,6 +245,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="serif"
                         android:text="@string/analytics"
+                        android:textColor="@color/brown"
                         android:textSize="20sp" />
 
                     <ImageView
