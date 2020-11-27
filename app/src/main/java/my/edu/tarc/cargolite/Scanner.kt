@@ -1,26 +1,20 @@
 package my.edu.tarc.cargolite
 
-import android.Manifest
-import android.R.attr
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.budiyev.android.codescanner.AutoFocusMode
-import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.CodeScannerView
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
-import com.budiyev.android.codescanner.ScanMode
+import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
 
 
-
 class Scanner : AppCompatActivity() {
+
+    private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val collectionRef: CollectionReference = database.collection("products")
+
 //    private lateinit var codeScanner: CodeScanner
 //    val MY_CAMERA_PERMISSION = 1111
 
@@ -125,6 +119,36 @@ class Scanner : AppCompatActivity() {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents != null) {
+                val code = result.contents.toString()
+                val shipmentType = code.substring(0, 1)
+                val product = code.substring(2, 9)
+                val quantity = (code.substring(10)).toInt()
+
+                val docRef: DocumentReference = collectionRef.document("$product")
+                docRef.get().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document != null) {
+                            var updatedQty = 0
+                            val currentQty = document.getString("productQuantity")
+                            if (shipmentType == "1") {
+                                updatedQty = currentQty!!.toInt() + quantity
+                                val update = hashMapOf("productQuantity" to updatedQty.toString())
+                                docRef.set(update, SetOptions.merge())
+                            } else if (shipmentType == "0") {
+                                updatedQty = currentQty!!.toInt() - quantity
+                                val update = hashMapOf("productQuantity" to updatedQty.toString())
+                                docRef.set(update, SetOptions.merge())
+                            }
+
+                        } else {
+                            Log.d("LOGGER", "No such document")
+                        }
+                    } else {
+                        Log.d("LOGGER", "get failed with ", task.exception)
+                    }
+                }
+
                 val builder = AlertDialog.Builder(this)
                 builder.setMessage(result.contents)
                 builder.setTitle("Scanning Results")

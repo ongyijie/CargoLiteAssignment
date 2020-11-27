@@ -4,7 +4,6 @@ import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.SearchView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -40,7 +40,6 @@ class Products : AppCompatActivity() {
         setUpRecyclerView()
 
         val fab_add: FloatingActionButton = findViewById(R.id.fab_add)
-        var searchBar: SearchView = findViewById(R.id.searchbar)
 
         //Button click to show dialog
         fab_add.setOnClickListener {
@@ -110,6 +109,11 @@ class Products : AppCompatActivity() {
                                 Log.d("TAG", "get failed with ", exception)
                             }
 
+                    val database = FirebaseDatabase.getInstance("https://assignment-94fa4.firebaseio.com/")
+                    val data = database.getReference("product/$productID/quantity")
+
+                    data.setValue(productQuantity)
+
                     //Show snackbar
                     val snackBar = Snackbar.make(
                             findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
@@ -118,6 +122,8 @@ class Products : AppCompatActivity() {
 
                     //Dismiss dialog
                     mAlertDialog.dismiss()
+
+                    productAdapter!!.notifyDataSetChanged()
                 }
             }
             //Cancel button click of custom layout
@@ -128,10 +134,23 @@ class Products : AppCompatActivity() {
         }
     }
 
-    fun setUpRecyclerView() {
-        val query1: Query = collectionRef
+   /* fun searchInDatabase(searchText: String) {
+        val query: Query = collectionRef.orderBy("productName").startAt(searchText).endAt("searchText\uf8ff")
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<ProductModel> = FirestoreRecyclerOptions.Builder<ProductModel>()
-                .setQuery(query1, ProductModel::class.java)
+                .setQuery(query, ProductModel::class.java)
+                .build()
+        productAdapter = ProductAdapter(firestoreRecyclerOptions)
+
+        recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerview.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recyclerview.adapter = productAdapter
+    }*/
+
+    fun setUpRecyclerView() {
+
+        val query: Query = collectionRef
+        val firestoreRecyclerOptions: FirestoreRecyclerOptions<ProductModel> = FirestoreRecyclerOptions.Builder<ProductModel>()
+                .setQuery(query, ProductModel::class.java)
                 .build()
 
         productAdapter = ProductAdapter(firestoreRecyclerOptions)

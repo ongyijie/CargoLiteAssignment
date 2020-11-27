@@ -10,18 +10,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/gray"
-        android:isScrollContainer="false">
-
-        <ImageView
-            android:id="@+id/imageViewLogo"
-            android:layout_width="319dp"
-            android:layout_height="191dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+        android:isScrollContainer="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -29,19 +24,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/layoutStockIn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_height="160dp"
             android:background="@color/gray"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingTop="4dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="4dp"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +41,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewStockIn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -90,13 +81,10 @@
         <LinearLayout
             android:id="@+id/layoutStockOut"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="160dp"
             android:background="@color/gray"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingTop="4dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="4dp"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,8 +93,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewStockOut"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -143,12 +131,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayoutNoStock"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:background="@color/gray"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +146,7 @@
                 android:id="@+id/cardViewNoStock"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -168,8 +156,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="4dp"
-                    android:background="@color/white">
+                    android:layout_margin="5dp"
+                    android:background="@color/white"
+                    android:paddingTop="4dp">
 
                     <TextView
                         android:id="@+id/textViewNoStock"
@@ -197,7 +186,7 @@
                 android:id="@+id/cardViewShipmentHistory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -205,7 +194,7 @@
                 app:cardCornerRadius="12dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white">
 
@@ -214,7 +203,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imageViewShipmentHistory"
-                        android:layout_marginTop="0dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="serif"
                         android:gravity="center"
                         android:text="@string/shipmentHistory"
@@ -230,8 +220,16 @@
                         app:srcCompat="@drawable/shipment_icon" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="280dp"
+            android:layout_height="149dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

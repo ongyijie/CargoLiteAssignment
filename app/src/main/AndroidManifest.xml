@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CargoLite">
         <activity android:name=".Stock"
+            android:label="Stock Management"
             android:parentActivityName="my.edu.tarc.cargolite.MainActivity"/>
         <activity android:name=".Scanner"/>
         <activity android:name=".Products"

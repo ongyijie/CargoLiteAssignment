@@ -46,4 +46,5 @@
     <string name="stockOut">Stock Out</string>
     <string name="noStock">Out Of Stock</string>
     <string name="shipmentHistory">Shipment History</string>
+    <string name="searchBar">Search here</string>
 </resources>
