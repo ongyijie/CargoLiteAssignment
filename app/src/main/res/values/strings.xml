@@ -28,7 +28,7 @@
     <string name="hint_productQuantity">Quantity</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
-    <string name="oldPassword">Old Password</string>
+    <string name="oldPassword">Current Password</string>
     <string name="newPassword">New Password</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="position">Position</string>
@@ -46,5 +46,6 @@
     <string name="stockOut">Stock Out</string>
     <string name="noStock">Out Of Stock</string>
     <string name="shipmentHistory">Shipment History</string>
-    <string name="searchBar">Search here</string>
+    <string name="editPassword">Edit Password</string>
+    <string name="update">Update</string>
 </resources>

@@ -1,24 +1,29 @@
-
 package my.edu.tarc.cargolite.ui.profile
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.edit_profile_dialog.view.*
 import my.edu.tarc.cargolite.R
+
 
 class ProfileFragment : Fragment() {
 
+    //Global variable
     private lateinit var profileViewModel: ProfileViewModel
-    private lateinit var status : String
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -34,67 +39,92 @@ class ProfileFragment : Fragment() {
             textView.text = it
         })
         //Link UI to program
-        val fab_editProfile : FloatingActionButton = root.findViewById(R.id.fab_editProfile)
+        val fab_editProfile: FloatingActionButton = root.findViewById(R.id.fab_editProfile)
+
         //Edit button onClick show user editProfile dialog
         fab_editProfile.setOnClickListener {
-            // create an alert builder
-            val builder = AlertDialog.Builder(it.context, R.style.MyDialogTheme)
-            builder.setTitle("Edit Profile")
-            // set the custom layout
-            val customLayout: View = layoutInflater.inflate(R.layout.edit_profile_dialog, null);
-            builder.setView(customLayout);
-            builder.apply {
-                setPositiveButton("Update", DialogInterface.OnClickListener { dialog, _ ->
-                    //Link UI to program
-                    val passwordOld : TextView = root.findViewById(R.id.passwordOld)
-                    val passwordNew : TextView = root.findViewById(R.id.passwordNew)
-                    val passwordConfirm : TextView = root.findViewById(R.id.passwordConfirm)
+            //inflate layout for dialog
+            val DialogView = LayoutInflater.from(getActivity()).inflate(R.layout.edit_profile_dialog, null)
 
-                    //validate password update
-                    val pswOld = passwordOld.text.toString()
-                    val pswNew = passwordNew.text.toString()
-                    val pswCon = passwordConfirm.text.toString()
+            //Link UI from dialog to the program
+            val passwordOld: EditText = DialogView.findViewById(R.id.passwordOld)
+            val passwordNew: EditText = DialogView.findViewById(R.id.passwordNew)
+            val passwordConfirm: EditText = DialogView.findViewById(R.id.passwordConfirm)
 
-                    if (TextUtils.isEmpty(pswOld)) {
-                        passwordOld.error = "This is a required field"
-                        status = "false"
-                    }
-                    if (TextUtils.isEmpty(pswNew)) {
-                        passwordNew.error = "This is a required field"
-                        status = "false"
-                    }
-                    if (TextUtils.isEmpty(pswCon)) {
-                        passwordConfirm.error = "This is a required field"
-                        status = "false"
-                    }
-                    if (pswNew == pswOld) {
-                        passwordNew.error = "New password cannot be the same as old password"
-                        status = "false"
-                    }
-                    if (pswCon != pswNew) {
-                        passwordConfirm.error = "Password doesn't match!"
-                        status = "false"
-                    }
-                    //When user click update, update the database
-                    //code for update database
-                })
-                setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _->
-                    //When user click cancel,close the dialog
-                    dialog.cancel()
-                })
+            //AlertDialogBuilder
+            val myBuilder = AlertDialog.Builder(getActivity())
+                    .setView(DialogView)
+
+            //Show dialog
+            var dialog = myBuilder.show()
+
+            DialogView.buttonUpdate.setOnClickListener {
+                //Retrieve text from EditText
+                val pswOld = passwordOld.text.toString()
+                val pswNew = passwordNew.text.toString()
+                val pswCon = passwordConfirm.text.toString()
+                var isValid = "true"
+
+                if (TextUtils.isEmpty(pswOld)) {
+                    passwordOld.error = "This is a required field"
+                    passwordOld.requestFocus()
+                    isValid = "false"
+                }
+                if (TextUtils.isEmpty(pswNew)) {
+                    passwordNew.error = "This is a required field"
+                    passwordNew.requestFocus()
+                    isValid = "false"
+                }
+                if (TextUtils.isEmpty(pswCon)) {
+                    passwordConfirm.error = "This is a required field"
+                    passwordConfirm.requestFocus()
+                    isValid = "false"
+                }
+                if (pswNew == pswOld) {
+                    passwordNew.error = "New password cannot be the same as Current Password"
+                    passwordNew.requestFocus()
+                    isValid = "false"
+                }
+                if (pswCon != pswNew) {
+                    passwordConfirm.error = "Password does not match"
+                    passwordConfirm.requestFocus()
+                    isValid = "false"
+                }
+                if (isValid == "true") {
+                    //Update to firestore
+                    updatePassword(pswOld,pswNew)
+                    Toast.makeText(getActivity(), "Validation Success", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                else{
+                    Toast.makeText(getActivity(), "Validation Failed", Toast.LENGTH_SHORT).show()
+                }
             }
-            // create and show the alert dialog
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+            DialogView.buttonCancel.setOnClickListener {
+                dialog.dismiss()
+            }
         }
         return root
     }//end of View
+
+    fun updatePassword(pswOld: String, pswNew: String) {
+        val firebaseUser = FirebaseAuth.getInstance().getCurrentUser()
+        val authCredential = EmailAuthProvider.getCredential(firebaseUser?.email.toString(), pswOld)
+        firebaseUser!!.reauthenticate(authCredential)
+                .addOnSuccessListener { task ->
+                    //Re-authenticate success
+                   firebaseUser.updatePassword(pswNew)
+                           .addOnSuccessListener {
+                               //password updated at firebase
+                               Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show()
+                           }
+                           .addOnFailureListener {
+                               Toast.makeText(getActivity(), "Update Failed. Please try again.", Toast.LENGTH_SHORT).show()
+                           }
+                }
+                .addOnFailureListener {
+                    //Re-authenticate failed
+                    Toast.makeText(getActivity(), "Authentication Failed. Please try again.", Toast.LENGTH_SHORT).show()
+                }
+    }
 }//end of class
-/*
-//Inflate edit Profile dialog with a custom view
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.edit_profile_dialog, null)
-            //start of alert dialog builder
-            val editBuilder = AlertDialog.Builder(this).setView(dialogView).setTitle("Edit Profile")
-            //display dialog
-            editBuilder.show()
- */
