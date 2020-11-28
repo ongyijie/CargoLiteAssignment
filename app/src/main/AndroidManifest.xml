@@ -15,9 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CargoLite">
-        <activity android:name=".Stock"
-            android:label="Stock Management"
-            android:parentActivityName="my.edu.tarc.cargolite.MainActivity"/>
+        <activity android:name=".StockInScanner"/>
+        <activity android:name=".StockOutScanner"/>
         <activity android:name=".Scanner"/>
         <activity android:name=".Products"
             android:label="Products"

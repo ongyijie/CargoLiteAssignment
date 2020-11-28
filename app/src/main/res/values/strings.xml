@@ -48,4 +48,7 @@
     <string name="shipmentHistory">Shipment History</string>
     <string name="editPassword">Edit Password</string>
     <string name="update">Update</string>
+    <string name="stockInError">This is a stock in scanner.</string>
+    <string name="stockOutError">This is a stock out scanner.</string>
+    <string name="invalidQR">Invalid QR code</string>
 </resources>

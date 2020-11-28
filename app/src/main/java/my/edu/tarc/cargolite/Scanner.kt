@@ -124,6 +124,7 @@ class Scanner : AppCompatActivity() {
                 val product = code.substring(2, 9)
                 val quantity = (code.substring(10)).toInt()
 
+                //Credits: Steffo Dimfelt https://stackoverflow.com/questions/48492993/firestore-get-documentsnapshots-fields-value
                 val docRef: DocumentReference = collectionRef.document("$product")
                 docRef.get().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -149,7 +150,6 @@ class Scanner : AppCompatActivity() {
                                     docRef.set(update, SetOptions.merge())
                                 }
                             }
-
                         } else {
                             Log.d("LOGGER", "No such document")
                         }
