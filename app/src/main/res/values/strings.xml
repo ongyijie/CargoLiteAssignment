@@ -35,8 +35,8 @@
     <string name="edit_profile">Edit profile</string>
     <string name="error_value_required">Value required</string>
     <string name="logout">Log Out</string>
-    <string name="fieldname_price">Price (RM):</string>
-    <string name="fieldname_location">Product location:</string>
+    <string name="fieldname_price">Unit Price (RM):</string>
+    <string name="fieldname_location">Product Location:</string>
     <string name="fieldname_qty">Quantity:</string>
     <string name="dialogLogout">Log Out</string>
     <string name="messageLogout">Are you sure?</string>
@@ -51,4 +51,8 @@
     <string name="stockInError">This is a stock in scanner.</string>
     <string name="stockOutError">This is a stock out scanner.</string>
     <string name="invalidQR">Invalid QR code</string>
+    <string name="addProductTitle">Add Product</string>
+    <string name="close">Close</string>
+    <string name="fieldname_id">Product ID:</string>
+    <string name="fieldname_name">Product Name:</string>
 </resources>

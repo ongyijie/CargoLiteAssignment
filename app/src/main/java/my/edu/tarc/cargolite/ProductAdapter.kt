@@ -31,7 +31,7 @@ FirestoreRecyclerAdapter<ProductModel, ProductAdapter.ProductAdapterViewHolder>(
     }
 
     class ProductAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var productID: TextView = itemView.textViewID
+        var productID: TextView = itemView.ID
         var productName: TextView = itemView.textViewName
         var productPrice: TextView = itemView.textViewPrice
         var productLocation: TextView = itemView.textViewLocation

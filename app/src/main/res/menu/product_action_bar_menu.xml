@@ -5,5 +5,5 @@
         android:id="@+id/scanner"
         android:icon="@drawable/ic_baseline_qr_code_scanner_24"
         android:title="@string/scanner"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always" />
 </menu>

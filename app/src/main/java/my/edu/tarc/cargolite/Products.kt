@@ -1,15 +1,14 @@
 package my.edu.tarc.cargolite
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,14 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.activity_products.*
-import kotlinx.android.synthetic.main.dialog_addproduct.view.*
-
 
 class Products : AppCompatActivity() {
 
@@ -32,6 +26,7 @@ class Products : AppCompatActivity() {
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionRef: CollectionReference = database.collection("products")
     var productAdapter: ProductAdapter? = null
+    val START_ADDPRODUCT_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,109 +41,15 @@ class Products : AppCompatActivity() {
 
         //Button click to show dialog
         fab_add.setOnClickListener {
-            //Inflate the dialog with custom view
-            val DialogView = LayoutInflater.from(this).inflate(R.layout.dialog_addproduct, null)
-
-            //AlertDialogBuilder
-            val myBuilder = AlertDialog.Builder(this)
-                    .setView(DialogView)
-                    .setTitle("Add New Product")
-            //Show dialog
-            val mAlertDialog = myBuilder.show()
-
-            //Add button click of custom layout
-            DialogView.dialogAddBtn.setOnClickListener {
-
-                //Get text from EditTexts of custom layout
-                val productID = DialogView.dialogIDEt.text.toString()
-                val productName = DialogView.dialogNameEt.text.toString().trim()
-                val productPrice = DialogView.dialogPriceEt.text.toString().trim()
-                val productLocation = DialogView.dialogLocationEt.text.toString().trim()
-                val productQuantity = DialogView.dialogQuantityEt.text.toString().trim()
-
-                if (productID.isEmpty()) {
-                    DialogView.dialogIDEt.error = "Name is required!"
-                    DialogView.dialogIDEt.requestFocus()
-                }
-
-                    if (productName.isEmpty()) {
-                        DialogView.dialogNameEt.error = "Name is required!"
-                        DialogView.dialogNameEt.requestFocus()
-                    }
-
-                    if (productPrice.isEmpty()) {
-                        DialogView.dialogPriceEt.error = "Price is required!"
-                        DialogView.dialogPriceEt.requestFocus()
-                    }
-
-                    if (productLocation.isEmpty()) {
-                        DialogView.dialogLocationEt.error = "Location is required!"
-                        DialogView.dialogLocationEt.requestFocus()
-                    }
-
-                    if (productQuantity.isEmpty()) {
-                        DialogView.dialogQuantityEt.error = "Quantity is required!"
-                        DialogView.dialogQuantityEt.requestFocus()
-                    }
-
-                var flag = productID.isNotEmpty() && productName.isNotEmpty() && productPrice.isNotEmpty() && productLocation.isNotEmpty() && productQuantity.isNotEmpty()
-                if (flag) {
-                    val product = hashMapOf(
-                            "productID" to productID,
-                            "productName" to productName,
-                            "productPrice" to productPrice,
-                            "productLocation" to productLocation,
-                            "productQuantity" to productQuantity
-                    )
-
-                    collectionRef.document("$productID")
-                            .set(product)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d("TAG", "DocumentSnapshot added")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("TAG", "Error adding document", e)
-                            }
-                            .addOnFailureListener { exception ->
-                                Log.d("TAG", "get failed with ", exception)
-                            }
-
-                    val database = FirebaseDatabase.getInstance("https://assignment-94fa4.firebaseio.com/")
-                    val data = database.getReference("product/$productID/quantity")
-
-                    data.setValue(productQuantity)
-
-                    //Show snackbar
-                    val snackBar = Snackbar.make(
-                            findViewById(R.id.ConstraintLayout), "New product added", Snackbar.LENGTH_LONG
-                    ).setAction("Action", null)
-                    snackBar.show()
-
-                    //Dismiss dialog
-                    mAlertDialog.dismiss()
-
-                    productAdapter!!.notifyDataSetChanged()
-                }
-            }
-            //Cancel button click of custom layout
-            DialogView.dialogCancelBtn.setOnClickListener {
-                //Dismiss dialog
-                mAlertDialog.dismiss()
-            }
+            val intentAddProducts = Intent(this, AddProduct::class.java)
+            startActivityForResult(intentAddProducts, START_ADDPRODUCT_REQUEST_CODE)
         }
+
+
+
+
+
     }//end of onCreate
-
-   /* fun searchInDatabase(searchText: String) {
-        val query: Query = collectionRef.orderBy("productName").startAt(searchText).endAt("searchText\uf8ff")
-        val firestoreRecyclerOptions: FirestoreRecyclerOptions<ProductModel> = FirestoreRecyclerOptions.Builder<ProductModel>()
-                .setQuery(query, ProductModel::class.java)
-                .build()
-        productAdapter = ProductAdapter(firestoreRecyclerOptions)
-
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        recyclerview.adapter = productAdapter
-    }*/
 
     fun setUpRecyclerView() {
 
@@ -168,7 +69,7 @@ class Products : AppCompatActivity() {
                 ItemTouchHelper.LEFT) {
 
             override fun getSwipeEscapeVelocity(defaultValue: Float): Float {
-                return defaultValue * 10   //Reduce swipe sensitivity
+                return defaultValue * 8   //Reduce swipe sensitivity
             }
 
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -225,6 +126,23 @@ class Products : AppCompatActivity() {
             R.id.scanner -> startActivity(Intent(this,Scanner::class.java))
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == START_ADDPRODUCT_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val message = data!!.getStringExtra("message")
+                //Show snackbar
+                val snackBar = Snackbar.make(
+                    findViewById(R.id.ConstraintLayout), "$message", Snackbar.LENGTH_LONG
+                ).setAction("Action", null)
+                snackBar.show()
+
+                productAdapter!!.notifyDataSetChanged()
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }//end of class
 

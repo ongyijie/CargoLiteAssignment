@@ -21,9 +21,6 @@ class StockInScanner : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         scanCode()
-//        val scanner = IntentIntegrator(this)
-//        scanner.initiateScan()
-
     }
 
     private fun scanCode() {

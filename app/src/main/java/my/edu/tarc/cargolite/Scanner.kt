@@ -3,11 +3,14 @@ package my.edu.tarc.cargolite
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.android.synthetic.main.dialog_viewproduct.*
+import kotlinx.android.synthetic.main.dialog_viewproduct.view.*
 
 
 class Scanner : AppCompatActivity() {
@@ -120,50 +123,48 @@ class Scanner : AppCompatActivity() {
         if (result != null) {
             if (result.contents != null) {
                 val code = result.contents.toString()
-                val shipmentType = code.substring(0, 1)
-                val product = code.substring(2, 9)
-                val quantity = (code.substring(10)).toInt()
 
                 //Credits: Steffo Dimfelt https://stackoverflow.com/questions/48492993/firestore-get-documentsnapshots-fields-value
-                val docRef: DocumentReference = collectionRef.document("$product")
+                val docRef: DocumentReference = collectionRef.document("$code")
                 docRef.get().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val document = task.result
                         if (document != null) {
-                            var updatedQty = 0
-                            val currentQty = document.getString("productQuantity")
-                            if (shipmentType == "1") {
-                                updatedQty = currentQty!!.toInt() + quantity
-                                val update = hashMapOf("productQuantity" to updatedQty.toString())
-                                docRef.set(update, SetOptions.merge())
-                            } else if (shipmentType == "0") {
-                                if (quantity > currentQty!!.toInt()) {
-                                    val builder = AlertDialog.Builder(this)
-                                    builder.setMessage("Insufiicient stock")
-                                    builder.setTitle("Inventory Alert")
-                                    builder.setPositiveButton("Noted") { dialog, which -> finish() }
-                                    val dialog = builder.create()
-                                    dialog.show()
-                                } else {
-                                    updatedQty = currentQty!!.toInt() - quantity
-                                    val update = hashMapOf("productQuantity" to updatedQty.toString())
-                                    docRef.set(update, SetOptions.merge())
-                                }
+                            if (document.exists()) {
+                                val productID = document.getString("productID")
+                                val productName = document.getString("productName")
+                                val productPrice = document.getString("productPrice")
+                                val productLocation = document.getString("productLocation")
+                                val productQuantity = document.getString("productQuantity")
+
+                                val intentDetails = Intent(this, ProductDetails::class.java)
+                                intentDetails.putExtra("productID", productID)
+                                intentDetails.putExtra("productName", productName)
+                                intentDetails.putExtra("productPrice", productPrice)
+                                intentDetails.putExtra("productLocation", productLocation)
+                                intentDetails.putExtra("productQuantity", productQuantity)
+                                startActivity(intentDetails)
+                            }else {
+                                val builder = AlertDialog.Builder(this)
+                                builder.setMessage("Product does not exist")
+                                builder.setTitle("Not found")
+                                builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                                val dialog = builder.create()
+                                dialog.show()
                             }
                         } else {
-                            Log.d("LOGGER", "No such document")
+                            //if product is null
+                            val builder = AlertDialog.Builder(this)
+                            builder.setMessage("This barcode does not contain any information")
+                            builder.setTitle("Null")
+                            builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                            val dialog = builder.create()
+                            dialog.show()
                         }
                     } else {
                         Log.d("LOGGER", "get failed with ", task.exception)
                     }
                 }
-
-                val builder = AlertDialog.Builder(this)
-                builder.setMessage(result.contents)
-                builder.setTitle("Scanning Results")
-                builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
-                val dialog = builder.create()
-                dialog.show()
             } else {
                 Toast.makeText(this, "No results", Toast.LENGTH_LONG).show()
             }
