@@ -3,17 +3,13 @@ package my.edu.tarc.cargolite
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
-import kotlinx.android.synthetic.main.dialog_viewproduct.*
-import kotlinx.android.synthetic.main.dialog_viewproduct.view.*
 
-
-class Scanner : AppCompatActivity() {
+class ProductScanner : AppCompatActivity() {
 
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionRef: CollectionReference = database.collection("products")
@@ -80,7 +76,6 @@ class Scanner : AppCompatActivity() {
 //    }
 //}
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
@@ -114,7 +109,7 @@ class Scanner : AppCompatActivity() {
         integrator.captureActivity = CaptureAct::class.java
         integrator.setOrientationLocked(false)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        integrator.setPrompt("Scanning Code")
+        integrator.setPrompt("Scanning barcode to view details")
         integrator.initiateScan()
     }
 

@@ -3,6 +3,7 @@ package my.edu.tarc.cargolite.ui.profile
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.edit_profile_dialog.view.*
 import my.edu.tarc.cargolite.R
 
@@ -24,6 +26,8 @@ class ProfileFragment : Fragment() {
     //Global variable
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var firebaseAuth : FirebaseAuth
+    //Defining database
+    private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -40,6 +44,28 @@ class ProfileFragment : Fragment() {
         })
         //Link UI to program
         val fab_editProfile: FloatingActionButton = root.findViewById(R.id.fab_editProfile)
+
+        val textViewUsername : TextView = root.findViewById(R.id.textViewUsername)
+        val textViewEmail : TextView = root.findViewById(R.id.textViewEmail)
+        val textViewPosition : TextView = root.findViewById(R.id.textViewPosition)
+
+        val firebaseUser = FirebaseAuth.getInstance().getCurrentUser()
+        val currentUserEmail = firebaseUser?.email.toString()
+        //Retrieve from
+        database.collection("users")
+                .whereEqualTo("email", currentUserEmail)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d("TAG", "${document.id} => ${document.data}")
+                        textViewUsername.setText(document.getString("userName"))
+                        textViewEmail.setText(document.getString("email"))
+                        textViewPosition.setText(document.getString("position"))
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("TAG", "Error getting documents: ", exception)
+                }
 
         //Edit button onClick show user editProfile dialog
         fab_editProfile.setOnClickListener {

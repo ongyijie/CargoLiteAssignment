@@ -24,7 +24,7 @@ class IDScanner : AppCompatActivity() {
         integrator.captureActivity = CaptureAct::class.java
         integrator.setOrientationLocked(false)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        integrator.setPrompt("Scanning Barcode")
+        integrator.setPrompt("Scanning barcode to insert ID")
         integrator.initiateScan()
     }
 

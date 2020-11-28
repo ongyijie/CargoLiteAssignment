@@ -40,7 +40,7 @@ class Register : AppCompatActivity() {
         val registerBtn : Button = findViewById(R.id.RegisterButton)
 
 //        auth = Firebase.auth
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance()
         progressBar = findViewById(R.id.progressBar)
 
         registerBtn.setOnClickListener {
