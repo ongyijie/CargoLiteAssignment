@@ -43,11 +43,6 @@ class Products : AppCompatActivity() {
             val intentAddProducts = Intent(this, AddProduct::class.java)
             startActivityForResult(intentAddProducts, START_ADDPRODUCT_REQUEST_CODE)
         }
-
-
-
-
-
     }//end of onCreate
 
     fun setUpRecyclerView() {
@@ -77,6 +72,7 @@ class Products : AppCompatActivity() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val builder = android.app.AlertDialog.Builder(this@Products)
+                builder.setCancelable(false)
                 builder.setTitle(R.string.dialogDelete)
                 builder.setMessage(R.string.messageDelete)
                 builder.setPositiveButton("Yes") { dialog, which ->

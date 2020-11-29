@@ -108,8 +108,8 @@ class ProductScanner : AppCompatActivity() {
         val integrator = IntentIntegrator(this)
         integrator.captureActivity = CaptureAct::class.java
         integrator.setOrientationLocked(false)
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        integrator.setPrompt("Scanning barcode to view details")
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.CODE_128)
+        integrator.setPrompt("Scanning barcode to view product")
         integrator.initiateScan()
     }
 
@@ -139,8 +139,9 @@ class ProductScanner : AppCompatActivity() {
                                 intentDetails.putExtra("productLocation", productLocation)
                                 intentDetails.putExtra("productQuantity", productQuantity)
                                 startActivity(intentDetails)
-                            }else {
+                            } else {
                                 val builder = AlertDialog.Builder(this)
+                                builder.setCancelable(false)
                                 builder.setMessage("Product does not exist")
                                 builder.setTitle("Not found")
                                 builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
@@ -150,6 +151,7 @@ class ProductScanner : AppCompatActivity() {
                         } else {
                             //if product is null
                             val builder = AlertDialog.Builder(this)
+                            builder.setCancelable(false)
                             builder.setMessage("This barcode does not contain any information")
                             builder.setTitle("Null")
                             builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
@@ -161,10 +163,12 @@ class ProductScanner : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "No results", Toast.LENGTH_LONG).show()
+                finish()
+                Toast.makeText(this, "No results", Toast.LENGTH_SHORT).show()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 }
+

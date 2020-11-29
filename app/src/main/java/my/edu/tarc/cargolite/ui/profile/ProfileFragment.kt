@@ -26,6 +26,7 @@ class ProfileFragment : Fragment() {
     //Global variable
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var firebaseAuth : FirebaseAuth
+
     //Defining database
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -79,6 +80,7 @@ class ProfileFragment : Fragment() {
 
             //AlertDialogBuilder
             val myBuilder = AlertDialog.Builder(getActivity())
+                    .setCancelable(false)
                     .setView(DialogView)
 
             //Show dialog

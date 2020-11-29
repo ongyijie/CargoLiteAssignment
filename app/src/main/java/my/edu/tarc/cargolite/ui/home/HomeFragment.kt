@@ -10,10 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import my.edu.tarc.cargolite.Products
-import my.edu.tarc.cargolite.R
-import my.edu.tarc.cargolite.StockInScanner
-import my.edu.tarc.cargolite.StockOutScanner
+import my.edu.tarc.cargolite.*
 
 class HomeFragment : Fragment() {
 
@@ -22,12 +19,12 @@ class HomeFragment : Fragment() {
     //private lateinit var cardViewProducts: CardView
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.textViewTitle)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -52,7 +49,7 @@ class HomeFragment : Fragment() {
         val intentProducts = Intent(this@HomeFragment.context, Products::class.java)
         val intentStockIn = Intent(this@HomeFragment.context, StockInScanner::class.java)
         val intentStockOut = Intent(this@HomeFragment.context, StockOutScanner::class.java)
-        //val intentShipmentHistory = Intent(this@HomeFragment.context, ShipmentHistory::class.java)
+        val intentShipmentHistory = Intent(this@HomeFragment.context, ShipmentHistory::class.java)
         //val intentAnalytics = Intent(this@HomeFragment.context, Analytics::class.java)
 
 
@@ -60,7 +57,7 @@ class HomeFragment : Fragment() {
             R.id.cardViewProducts -> startActivity(intentProducts)
             R.id.cardViewStockIn -> startActivity(intentStockIn)
             R.id.cardViewStockOut -> startActivity(intentStockOut)
-            //R.id.cardViewShipmentHistory -> startActivity(intentShipmentHistory)
+            R.id.cardViewShipmentHistory -> startActivity(intentShipmentHistory)
             //R.id.cardViewAnalytics -> startActivity(intentAnalytics)
         }
     }

@@ -34,9 +34,11 @@ class SettingsFragment: Fragment() {
         buttonLogout.setOnClickListener {
 
             val builder = AlertDialog.Builder(this@SettingsFragment.context)
+            builder.setCancelable(false)
             builder.setTitle(R.string.dialogLogout)
             builder.setMessage(R.string.messageLogout)
             builder.setPositiveButton("Yes") { dialog, which ->
+
                 val intentLogin = Intent(this@SettingsFragment.context, Login::class.java)
                 intentLogin.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK    //Prevent back button after logout
                 startActivity(intentLogin)
@@ -44,6 +46,7 @@ class SettingsFragment: Fragment() {
             builder.setNegativeButton("No") { dialog, which ->
                 dialog.dismiss()
             }
+
             builder.show()
         }
         return root

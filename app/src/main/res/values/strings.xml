@@ -26,7 +26,6 @@
     <string name="hint_productlocation">Shelf level, number etc</string>
     <string name="hint_unitprice">Unit Price (RM)</string>
     <string name="hint_productQuantity">Quantity</string>
-    <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="oldPassword">Current Password</string>
     <string name="newPassword">New Password</string>
@@ -55,4 +54,14 @@
     <string name="close">Close</string>
     <string name="fieldname_id">Product ID:</string>
     <string name="fieldname_name">Product Name:</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="id">ID:</string>
+    <string name="name">Name:</string>
+    <string name="price">Price (RM):</string>
+    <string name="location">Location:</string>
+    <string name="quantity">Quantity:</string>
+    <string name="add">Add</string>
+    <string name="stockInRecords">STOCK IN RECORDS</string>
+    <string name="stockOutRecords">STOCK OUT RECORDS</string>
 </resources>

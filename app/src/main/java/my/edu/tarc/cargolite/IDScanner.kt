@@ -23,7 +23,7 @@ class IDScanner : AppCompatActivity() {
         val integrator = IntentIntegrator(this)
         integrator.captureActivity = CaptureAct::class.java
         integrator.setOrientationLocked(false)
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.CODE_128)
         integrator.setPrompt("Scanning barcode to insert ID")
         integrator.initiateScan()
     }
@@ -39,7 +39,8 @@ class IDScanner : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intentAddProduct)
                 finish()
             } else {
-                Toast.makeText(this, "No results", Toast.LENGTH_LONG).show()
+                finish()
+                Toast.makeText(this, "No results", Toast.LENGTH_SHORT).show()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/productDetails"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 
     <TextView
         android:id="@+id/detailsID"
@@ -16,7 +17,7 @@
         android:hint="@string/hint_productID"
         android:inputType="none"
         android:text="@string/fieldname_id"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:hint="@string/hint_productlocation"
         android:inputType="none"
         android:text="@string/fieldname_location"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/detailsPrice"
         app:layout_constraintTop_toBottomOf="@+id/detailsPrice" />
@@ -44,7 +45,7 @@
         android:hint="@string/hint_productQuantity"
         android:inputType="none"
         android:text="@string/fieldname_qty"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/detailsLocation"
         app:layout_constraintTop_toBottomOf="@+id/detailsLocation" />
@@ -59,7 +60,7 @@
         android:hint="@string/hint_unitprice"
         android:inputType="none"
         android:text="@string/fieldname_price"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/detailsName"
         app:layout_constraintTop_toBottomOf="@+id/detailsName" />
@@ -73,31 +74,32 @@
         android:hint="@string/hint_productname"
         android:inputType="none"
         android:text="@string/fieldname_name"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/detailsID"
         app:layout_constraintTop_toBottomOf="@+id/detailsID" />
 
     <Button
-        android:id="@+id/closeBtn"
+        android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="serif"
         android:text="@string/close"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quantity" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
 
     <TextView
-        android:id="@+id/ID"
+        android:id="@+id/editTextID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="serif"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsID"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,13 +107,14 @@
         app:layout_constraintTop_toTopOf="@+id/detailsID" />
 
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/editTextName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,13 +122,14 @@
         app:layout_constraintTop_toTopOf="@+id/detailsName" />
 
     <TextView
-        android:id="@+id/Price"
+        android:id="@+id/editTextPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsPrice"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,13 +137,14 @@
         app:layout_constraintTop_toTopOf="@+id/detailsPrice" />
 
     <TextView
-        android:id="@+id/Quantity"
+        android:id="@+id/editTextQuantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsQuantity"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,13 +152,14 @@
         app:layout_constraintTop_toTopOf="@+id/detailsQuantity" />
 
     <TextView
-        android:id="@+id/Location"
+        android:id="@+id/editTextLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/darkbrown"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsLocation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +167,17 @@
         app:layout_constraintStart_toEndOf="@+id/detailsLocation"
         app:layout_constraintTop_toTopOf="@+id/detailsLocation"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="serif"
+        android:text="@string/edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/productDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="serif"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
+        app:layout_constraintTop_toBottomOf="@+id/dialogQuantity" />
+
+    <EditText
+        android:id="@+id/dialogID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
+        android:text="TextView"
+        android:textColor="@color/darkbrown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewID"
+        app:layout_constraintTop_toTopOf="@+id/textViewID" />
+
+    <EditText
+        android:id="@+id/dialogName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
+        android:text="TextView"
+        android:textColor="@color/darkbrown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewName"
+        app:layout_constraintTop_toBottomOf="@+id/dialogID" />
+
+    <EditText
+        android:id="@+id/dialogPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
+        android:text="TextView"
+        android:textColor="@color/darkbrown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/dialogQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
+        android:text="TextView"
+        android:textColor="@color/darkbrown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <EditText
+        android:id="@+id/dialogLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="serif"
+        android:text="TextView"
+        android:textColor="@color/darkbrown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="serif"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/saveBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogQuantity" />
+
+    <TextView
+        android:id="@+id/textViewID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="@string/id"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/name"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewID"
+        app:layout_constraintTop_toBottomOf="@+id/textViewID" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/price"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/quantity"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/location"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

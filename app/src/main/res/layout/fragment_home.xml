@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/gray"
         android:isScrollContainer="false">
 
@@ -146,7 +146,7 @@
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="20dp"
-                        app:srcCompat="@drawable/stockout_icon" />
+                        app:srcCompat="@drawable/stockout_icon"/>
 
                     <TextView
                         android:id="@+id/textViewStockOut"
