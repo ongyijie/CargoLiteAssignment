@@ -12,70 +12,130 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:hint="@string/hint_productID"
         android:inputType="none"
         android:text="@string/fieldname_id"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/detailsLocation"
-        android:layout_width="152dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productlocation"
-        android:inputType="none"
-        android:text="@string/fieldname_location"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsPrice"
-        app:layout_constraintTop_toBottomOf="@+id/detailsPrice" />
-
-    <TextView
-        android:id="@+id/detailsQuantity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productQuantity"
-        android:inputType="none"
-        android:text="@string/fieldname_qty"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsLocation"
-        app:layout_constraintTop_toBottomOf="@+id/detailsLocation" />
-
-
-    <TextView
-        android:id="@+id/detailsPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_unitprice"
-        android:inputType="none"
-        android:text="@string/fieldname_price"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsName"
-        app:layout_constraintTop_toBottomOf="@+id/detailsName" />
 
     <TextView
         android:id="@+id/detailsName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:hint="@string/hint_productname"
         android:inputType="none"
         android:text="@string/fieldname_name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detailsID"
+        app:layout_constraintTop_toBottomOf="@+id/editTextID" />
+
+    <TextView
+        android:id="@+id/detailsPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:hint="@string/hint_unitprice"
+        android:inputType="none"
+        android:text="@string/fieldname_price"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detailsName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+    <TextView
+        android:id="@+id/detailsQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:hint="@string/hint_productQuantity"
+        android:inputType="none"
+        android:text="@string/fieldname_qty"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detailsLocation"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
+
+    <TextView
+        android:id="@+id/editTextLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
         android:textColor="@color/darkbrown"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/detailsLocation"
+        app:layout_constraintTop_toBottomOf="@+id/detailsLocation" />
+
+    <TextView
+        android:id="@+id/editTextPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/detailsPrice"
+        app:layout_constraintTop_toBottomOf="@+id/detailsPrice" />
+
+    <TextView
+        android:id="@+id/detailsLocation"
+        android:layout_width="152dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:hint="@string/hint_productlocation"
+        android:inputType="none"
+        android:text="@string/fieldname_location"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detailsPrice"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
+
+    <TextView
+        android:id="@+id/editTextQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/detailsQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/detailsQuantity" />
+
+    <TextView
+        android:id="@+id/editTextName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/detailsName"
+        app:layout_constraintTop_toBottomOf="@+id/detailsName" />
+
+    <TextView
+        android:id="@+id/editTextID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
+        android:textColor="@color/darkbrown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/detailsID"
         app:layout_constraintTop_toBottomOf="@+id/detailsID" />
 
@@ -83,101 +143,24 @@
         android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="serif"
         android:text="@string/close"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
-
-    <TextView
-        android:id="@+id/editTextID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/detailsID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detailsID"
-        app:layout_constraintTop_toTopOf="@+id/detailsID" />
-
-    <TextView
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/detailsName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detailsName"
-        app:layout_constraintTop_toTopOf="@+id/detailsName" />
-
-    <TextView
-        android:id="@+id/editTextPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/detailsPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detailsPrice"
-        app:layout_constraintTop_toTopOf="@+id/detailsPrice" />
-
-    <TextView
-        android:id="@+id/editTextQuantity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/detailsQuantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detailsQuantity"
-        app:layout_constraintTop_toTopOf="@+id/detailsQuantity" />
-
-    <TextView
-        android:id="@+id/editTextLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/detailsLocation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/detailsLocation"
-        app:layout_constraintTop_toTopOf="@+id/detailsLocation"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="serif"
         android:text="@string/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saveBtn"
-        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
+        app:layout_constraintStart_toEndOf="@+id/saveBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
