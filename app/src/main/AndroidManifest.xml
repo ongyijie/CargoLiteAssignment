@@ -16,9 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CargoLite">
-        <activity android:name=".ShipmentHistory"></activity>
-        <activity android:name=".StockInHistory"></activity>
-        <activity android:name=".StockOutHistory"></activity>
+        <activity android:name=".ShipmentHistory"
+            android:label="Shipment History"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".StockInHistory"
+            android:label="Stock In History"
+            android:parentActivityName=".ShipmentHistory"/>
+        <activity android:name=".StockOutHistory"
+            android:label="Stock Out History"
+            android:parentActivityName=".ShipmentHistory"/>
         <activity
             android:name=".ProductDetails"
             android:label="Product Details"

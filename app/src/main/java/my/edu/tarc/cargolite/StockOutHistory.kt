@@ -22,6 +22,9 @@ class StockOutHistory: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stock_out_history)
 
+        //Enabling up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         //Call set Recycler view function
         setOutHistoryRecyclerView()
     }//end of OnCreate

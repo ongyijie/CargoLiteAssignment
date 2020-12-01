@@ -22,6 +22,9 @@ class StockInHistory: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stock_in_history)
 
+        //Enabling up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         //Call set Recycler view function
         setInHistoryRecyclerView()
 

@@ -10,6 +10,9 @@ class ShipmentHistory: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shipment_history)
 
+        //Enabling up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         //Link UI to program
         val cardViewStockInHistory: CardView = findViewById(R.id.cardViewStockInHistory)
         val cardViewStockOutHistory : CardView = findViewById(R.id.cardViewStockOutHistory)
