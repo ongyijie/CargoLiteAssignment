@@ -20,7 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.edit_profile_dialog.view.*
 import my.edu.tarc.cargolite.R
 
-
 class ProfileFragment : Fragment() {
 
     //Global variable
