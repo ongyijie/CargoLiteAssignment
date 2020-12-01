@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="346dp"
-        android:layout_height="221dp"
+        android:layout_width="321dp"
+        android:layout_height="193dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,27 +58,18 @@
                     android:id="@+id/imageViewInRecord"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="120dp"
-                    app:srcCompat="@drawable/shipment_records_icon" />
-
-                <ImageView
-                    android:id="@+id/imageViewInStock"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_toStartOf="@+id/imageViewInRecord"
-                    app:srcCompat="@drawable/stockin_icon" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="0dp"
+                    app:srcCompat="@drawable/in_record_icon" />
 
                 <TextView
                     android:id="@+id/textViewStockInHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageViewInStock"
+                    android:layout_below="@id/imageViewInRecord"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="serif"
@@ -92,14 +83,16 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="160dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="150dp"
         android:background="@color/gray"
         android:orientation="horizontal"
         android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutShipmentIn">
+        app:layout_constraintTop_toBottomOf="@+id/layoutShipmentIn"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewStockOutHistory"
@@ -124,27 +117,18 @@
                     android:id="@+id/imageViewOutRecord"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="120dp"
-                    app:srcCompat="@drawable/shipment_records_icon" />
-
-                <ImageView
-                    android:id="@+id/imageViewOutStock"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_toStartOf="@+id/imageViewOutRecord"
-                    app:srcCompat="@drawable/stockout_icon" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="0dp"
+                    app:srcCompat="@drawable/out_record_icon" />
 
                 <TextView
                     android:id="@+id/textViewStockOutHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageViewOutStock"
+                    android:layout_below="@id/imageViewOutRecord"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="serif"

@@ -68,7 +68,6 @@ class ProductDetails : AppCompatActivity() {
             dialogView.dialogName.setText(productName)
             dialogView.dialogPrice.setText(productPrice)
             dialogView.dialogLocation.setText(productLocation)
-            dialogView.dialogQuantity.setText(productQuantity)
 
             dialogView.saveBtn.setOnClickListener {
 
@@ -77,7 +76,6 @@ class ProductDetails : AppCompatActivity() {
                 val productName = dialogView.dialogName.text.toString()
                 val productPrice = dialogView.dialogPrice.text.toString()
                 val productLocation = dialogView.dialogLocation.text.toString()
-                val productQuantity = dialogView.dialogQuantity.text.toString()
 
                 if (productName.isEmpty()) {
                     dialogView.dialogName.error = "Name is required!"
@@ -94,13 +92,8 @@ class ProductDetails : AppCompatActivity() {
                     dialogView.dialogLocation.requestFocus()
                 }
 
-                if (productQuantity.isEmpty()) {
-                    dialogView.dialogQuantity.error = "Quantity is required!"
-                    dialogView.dialogQuantity.requestFocus()
-                }
-
                 val flag =
-                    productName.isNotEmpty() && productPrice.isNotEmpty() && productLocation.isNotEmpty() && productQuantity.isNotEmpty()
+                    productName.isNotEmpty() && productPrice.isNotEmpty() && productLocation.isNotEmpty()
 
                 if (flag) {
                     //Defining database
@@ -111,7 +104,6 @@ class ProductDetails : AppCompatActivity() {
                         "productName" to productName,
                         "productPrice" to productPrice,
                         "productLocation" to productLocation,
-                        "productQuantity" to productQuantity
                     )
 
                     database.collection("products").document("$productID")
@@ -135,13 +127,11 @@ class ProductDetails : AppCompatActivity() {
                                 val productName = document.getString("productName")
                                 val productPrice = document.getString("productPrice")
                                 val productLocation = document.getString("productLocation")
-                                val productQuantity = document.getString("productQuantity")
 
                                 id.text = productID
                                 name.text = productName
                                 price.text = productPrice
                                 location.text = productLocation
-                                quantity.text = productQuantity
 
                             } else {
                                 Log.d("LOGGER", "No such document")
