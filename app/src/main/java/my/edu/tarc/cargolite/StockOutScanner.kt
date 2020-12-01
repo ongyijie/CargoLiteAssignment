@@ -52,7 +52,13 @@ class StockOutScanner : AppCompatActivity() {
                             if (myDocument != null) {
                                 //Check if the shipment already existed
                                 if (myDocument.exists()) {
-                                    Toast.makeText(baseContext, "This shipment already exist!", Toast.LENGTH_SHORT).show()
+                                    val builder = AlertDialog.Builder(this)
+                                    builder.setCancelable(false)
+                                    builder.setMessage("This QR code has been scanned!")
+                                    builder.setTitle("Error")
+                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Cancel") { dialog, which -> finish() }
+                                    val dialog = builder.create()
+                                    dialog.show()
                                 } else {
 
                                     //Credits: Steffo Dimfelt https://stackoverflow.com/questions/48492993/firestore-get-documentsnapshots-fields-value
