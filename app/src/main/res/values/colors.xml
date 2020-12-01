@@ -15,4 +15,6 @@
     <color name="red">#E33232</color>
     <color name="light_green">#e6f2d3</color>
     <color name="light_pink">#FFE4E1</color>
+    <color name="profile_yellow">#FCFDED</color>
+    <color name="profile_brown">#DBC5BB</color>
 </resources>

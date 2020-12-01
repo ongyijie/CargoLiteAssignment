@@ -18,7 +18,6 @@
     <string name="retypePassword">retype password</string>
     <string name="RegisterButton">Register</string>
     <string name="email">Email</string>
-    <string name="userID">UserID</string>
     <string name="phoneNumber">phone number</string>
     <string name="add_product">Add new product</string>
     <string name="hint_productname">Product name</string>
