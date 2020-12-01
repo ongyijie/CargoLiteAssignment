@@ -17,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CargoLite">
         <activity android:name=".ShipmentHistory"></activity>
+        <activity android:name=".StockInHistory"></activity>
+        <activity android:name=".StockOutHistory"></activity>
         <activity
             android:name=".ProductDetails"
             android:label="Product Details"

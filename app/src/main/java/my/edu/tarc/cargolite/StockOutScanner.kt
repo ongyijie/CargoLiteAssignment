@@ -92,7 +92,7 @@ class StockOutScanner : AppCompatActivity() {
                                                         val shipmentOut = hashMapOf(
                                                             "shipmentID" to shipmentID,
                                                             "productID" to productID,
-                                                            "quantity" to quantity
+                                                            "quantity" to quantity.toString()
                                                         )
                                                         documentRef.set(shipmentOut)
                                                     }

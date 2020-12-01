@@ -13,4 +13,6 @@
     <color name="lightbrown">#F4EADC</color>
     <color name="yellow">#FDFDE2</color>
     <color name="red">#E33232</color>
+    <color name="light_green">#e6f2d3</color>
+    <color name="light_pink">#FFE4E1</color>
 </resources>

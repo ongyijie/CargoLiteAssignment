@@ -74,7 +74,7 @@ class StockInScanner : AppCompatActivity() {
                                                         val shipmentIn = hashMapOf(
                                                             "shipmentID" to shipmentID,
                                                             "productID" to productID,
-                                                            "quantity" to quantity
+                                                            "quantity" to quantity.toString()
                                                         )
                                                         documentRef.set(shipmentIn)
                                                     }
