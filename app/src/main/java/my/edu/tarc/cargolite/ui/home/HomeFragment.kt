@@ -15,8 +15,6 @@ import my.edu.tarc.cargolite.*
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    //private lateinit var  cardViewScanner: CardView
-    //private lateinit var cardViewProducts: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater,

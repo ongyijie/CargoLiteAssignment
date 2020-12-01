@@ -1,7 +1,6 @@
 package my.edu.tarc.cargolite
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
@@ -31,8 +31,15 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar)
 
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
         registerBtn.setOnClickListener{
-            startActivity(Intent(this,Register::class.java))
+            startActivity(Intent(this, Register::class.java))
         }
 
         loginBtn.setOnClickListener{
@@ -54,10 +61,16 @@ class Login : AppCompatActivity() {
                     if (task.isSuccessful) {
                         progressBar.setVisibility(View.GONE)
                         Toast.makeText(baseContext, "Signed in successfully", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     } else {
                         progressBar.setVisibility(View.GONE)
-                        Toast.makeText(baseContext, "Sign in failed, please try again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            baseContext,
+                            "Sign in failed, please try again",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }

@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.dialog_editproduct.view.*
 
 class ProductDetails : AppCompatActivity() {
@@ -59,7 +60,6 @@ class ProductDetails : AppCompatActivity() {
 
             val myBuilder = AlertDialog.Builder(this)
                     .setView(dialogView)
-                    .setTitle("Edit Product")
                     .setCancelable(false)
 
             val mAlertDialog = myBuilder.show()
@@ -79,18 +79,42 @@ class ProductDetails : AppCompatActivity() {
                 val productLocation = dialogView.dialogLocation.text.toString()
                 val productQuantity = dialogView.dialogQuantity.text.toString()
 
-                //Defining database
-                val database = Firebase.firestore
+                if (productName.isEmpty()) {
+                    dialogView.dialogName.error = "Name is required!"
+                    dialogView.dialogName.requestFocus()
+                }
 
-                val product = hashMapOf(
+                if (productPrice.isEmpty()) {
+                    dialogView.dialogPrice.error = "Price is required!"
+                    dialogView.dialogPrice.requestFocus()
+                }
+
+                if (productLocation.isEmpty()) {
+                    dialogView.dialogLocation.error = "Location is required!"
+                    dialogView.dialogLocation.requestFocus()
+                }
+
+                if (productQuantity.isEmpty()) {
+                    dialogView.dialogQuantity.error = "Quantity is required!"
+                    dialogView.dialogQuantity.requestFocus()
+                }
+
+                val flag =
+                    productName.isNotEmpty() && productPrice.isNotEmpty() && productLocation.isNotEmpty() && productQuantity.isNotEmpty()
+
+                if (flag) {
+                    //Defining database
+                    val database = Firebase.firestore
+
+                    val product = hashMapOf(
                         "productID" to productID,
                         "productName" to productName,
                         "productPrice" to productPrice,
                         "productLocation" to productLocation,
                         "productQuantity" to productQuantity
-                )
+                    )
 
-                database.collection("products").document("$productID")
+                    database.collection("products").document("$productID")
                         .set(product)
                         .addOnSuccessListener { documentReference ->
                             Log.d("TAG", "DocumentSnapshot added")
@@ -102,35 +126,38 @@ class ProductDetails : AppCompatActivity() {
                             Log.d("TAG", "get failed with ", exception)
                         }
 
-                val docRef: DocumentReference = collectionRef.document("$productID")
-                docRef.get().addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val document = task.result
-                        if (document != null) {
-                            val productID = document.getString("productID")
-                            val productName = document.getString("productName")
-                            val productPrice = document.getString("productPrice")
-                            val productLocation = document.getString("productLocation")
-                            val productQuantity = document.getString("productQuantity")
+                    val docRef: DocumentReference = collectionRef.document("$productID")
+                    docRef.get().addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val document = task.result
+                            if (document != null) {
+                                val productID = document.getString("productID")
+                                val productName = document.getString("productName")
+                                val productPrice = document.getString("productPrice")
+                                val productLocation = document.getString("productLocation")
+                                val productQuantity = document.getString("productQuantity")
 
-                            id.text = productID
-                            name.text = productName
-                            price.text = productPrice
-                            location.text = productLocation
-                            quantity.text = productQuantity
+                                id.text = productID
+                                name.text = productName
+                                price.text = productPrice
+                                location.text = productLocation
+                                quantity.text = productQuantity
 
+                            } else {
+                                Log.d("LOGGER", "No such document")
+                            }
                         } else {
-                            Log.d("LOGGER", "No such document")
+                            Log.d("LOGGER", "get failed with ", task.exception)
                         }
-                    } else {
-                        Log.d("LOGGER", "get failed with ", task.exception)
                     }
+                    val snackBar = Snackbar.make(
+                        findViewById(R.id.productDetails),
+                        "Product details updated",
+                        Snackbar.LENGTH_LONG
+                    ).setAction("Action", null)
+                    snackBar.show()
+                    mAlertDialog.dismiss()
                 }
-                val snackBar = Snackbar.make(
-                        findViewById(R.id.productDetails), "Product details updated", Snackbar.LENGTH_LONG
-                ).setAction("Action", null)
-                snackBar.show()
-                mAlertDialog.dismiss()
             }
             dialogView.cancelBtn.setOnClickListener {
                 mAlertDialog.dismiss()

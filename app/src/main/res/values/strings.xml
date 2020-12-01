@@ -64,5 +64,4 @@
     <string name="add">Add</string>
     <string name="stockInRecords">STOCK IN RECORDS</string>
     <string name="stockOutRecords">STOCK OUT RECORDS</string>
-    <string name="shipmentId">Shipment Id : </string>
 </resources>
