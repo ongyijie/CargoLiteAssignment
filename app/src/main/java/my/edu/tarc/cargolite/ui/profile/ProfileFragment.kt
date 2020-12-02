@@ -24,7 +24,7 @@ class ProfileFragment : Fragment() {
 
     //Global variable
     private lateinit var profileViewModel: ProfileViewModel
-    private lateinit var firebaseAuth : FirebaseAuth
+    //private lateinit var firebaseAuth : FirebaseAuth
 
     //Defining database
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
