@@ -1,13 +1,19 @@
 package my.edu.tarc.cargolite
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class StockOutScanner : AppCompatActivity() {
 
@@ -34,7 +40,11 @@ class StockOutScanner : AppCompatActivity() {
         integrator.initiateScan()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        val time: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents != null) {
@@ -75,7 +85,7 @@ class StockOutScanner : AppCompatActivity() {
                                                     if (quantity > currentQty!!.toInt()) {
                                                         val builder = AlertDialog.Builder(this)
                                                         builder.setCancelable(false)
-                                                        builder.setMessage("Quantity needed: $quantity, Quantity on hand: $currentQty")
+                                                        builder.setMessage("Quantity needed: $quantity \nQuantity on hand: $currentQty")
                                                         builder.setTitle("Insufficient Stock")
                                                         builder.setPositiveButton("Noted") { dialog, which -> finish() }
                                                         val dialog = builder.create()
@@ -87,7 +97,7 @@ class StockOutScanner : AppCompatActivity() {
 
                                                         val builder = AlertDialog.Builder(this)
                                                         builder.setCancelable(false)
-                                                        builder.setMessage("$quantity units of $productID removed from inventory")
+                                                        builder.setMessage("$time \nProduct: $productID \nQuantity: $quantity units")
                                                         builder.setTitle("Stock Out")
                                                         builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                                         val dialog = builder.create()
@@ -98,7 +108,8 @@ class StockOutScanner : AppCompatActivity() {
                                                         val shipmentOut = hashMapOf(
                                                             "shipmentID" to shipmentID,
                                                             "productID" to productID,
-                                                            "quantity" to quantity.toString()
+                                                            "quantity" to quantity.toString(),
+                                                            "time" to time
                                                         )
                                                         documentRef.set(shipmentOut)
                                                     }

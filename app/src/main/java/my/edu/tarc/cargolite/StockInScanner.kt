@@ -1,13 +1,22 @@
 package my.edu.tarc.cargolite
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class StockInScanner : AppCompatActivity() {
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -33,7 +42,12 @@ class StockInScanner : AppCompatActivity() {
         integrator.initiateScan()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SimpleDateFormat")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        val time: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents != null) {
@@ -80,13 +94,14 @@ class StockInScanner : AppCompatActivity() {
                                                         val shipmentIn = hashMapOf(
                                                             "shipmentID" to shipmentID,
                                                             "productID" to productID,
-                                                            "quantity" to quantity.toString()
+                                                            "quantity" to quantity.toString(),
+                                                            "time" to time
                                                         )
                                                         documentRef.set(shipmentIn)
                                                     }
 
                                                     val builder = AlertDialog.Builder(this)
-                                                    builder.setMessage("$quantity units of $productID added to inventory")
+                                                    builder.setMessage("$time \nProduct: $productID \nQuantity: $quantity units")
                                                     builder.setTitle("Stock In")
                                                     builder.setCancelable(false)
                                                     builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
