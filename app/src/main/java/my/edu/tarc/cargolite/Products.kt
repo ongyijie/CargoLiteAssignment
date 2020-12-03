@@ -1,12 +1,21 @@
 package my.edu.tarc.cargolite
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,8 +25,11 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.*
+import com.google.firebase.firestore.auth.User
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
+import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_products.*
+import kotlinx.android.synthetic.main.product_list.*
 
 class Products : AppCompatActivity() {
 
@@ -27,6 +39,7 @@ class Products : AppCompatActivity() {
     var productAdapter: ProductAdapter? = null
     val START_ADDPRODUCT_REQUEST_CODE = 1
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
@@ -112,13 +125,13 @@ class Products : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.product_action_bar_menu,menu)
+        menuInflater.inflate(R.menu.product_action_bar_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.scanner -> startActivity(Intent(this,ProductScanner::class.java))
+            R.id.scanner -> startActivity(Intent(this, ProductScanner::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -129,7 +142,7 @@ class Products : AppCompatActivity() {
                 val message = data!!.getStringExtra("message")
                 //Show snackbar
                 val snackBar = Snackbar.make(
-                    findViewById(R.id.ConstraintLayout), "$message", Snackbar.LENGTH_LONG
+                        findViewById(R.id.ConstraintLayout), "$message", Snackbar.LENGTH_LONG
                 ).setAction("Action", null)
                 snackBar.show()
 

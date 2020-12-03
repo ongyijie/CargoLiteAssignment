@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="my.edu.tarc.mytoolbar.MainActivity">
     <item
+        android:id="@+id/notificationLogo"
+        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:title="@string/title_notifications"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:orderInCategory="100"

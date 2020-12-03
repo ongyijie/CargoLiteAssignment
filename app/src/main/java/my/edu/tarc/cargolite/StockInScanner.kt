@@ -11,12 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.*
 import com.google.zxing.integration.android.IntentIntegrator
-import java.text.SimpleDateFormat
-import java.time.Instant
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class StockInScanner : AppCompatActivity() {
     private val database: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -69,7 +65,7 @@ class StockInScanner : AppCompatActivity() {
                                     builder.setCancelable(false)
                                     builder.setMessage("This QR code has been scanned!")
                                     builder.setTitle("Error")
-                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Cancel") { dialog, which -> finish() }
+                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                     val dialog = builder.create()
                                     dialog.show()
                                 } else {
@@ -112,7 +108,7 @@ class StockInScanner : AppCompatActivity() {
                                                     builder.setCancelable(false)
                                                     builder.setMessage("This product has not been registered into the inventory")
                                                     builder.setTitle("Error")
-                                                    builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                                     val dialog = builder.create()
                                                     dialog.show()
                                                 }
@@ -124,7 +120,7 @@ class StockInScanner : AppCompatActivity() {
                                             Log.d("LOGGER", "get failed with ", task.exception)
                                         }
                                     }
-                                }//end of else exist
+                                } //end of else exist
                             }
                         }
                     }
@@ -134,7 +130,7 @@ class StockInScanner : AppCompatActivity() {
                     builder.setMessage(R.string.stockInError)
                     builder.setTitle(R.string.invalidQR)
                     builder.setCancelable(false)
-                    builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                     val dialog = builder.create()
                     dialog.show()
                 }

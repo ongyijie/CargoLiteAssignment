@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_profile, R.id.navigation_notifications))
+                R.id.navigation_home, R.id.navigation_profile))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -40,8 +40,14 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        when (item.itemId) {
+            R.id.notificationLogo -> {
+                val intentNotification = Intent(this, Notification::class.java)
+                startActivity(intentNotification)
+            }
+        }
         return when (item.itemId) {
-            R.id.action_logout -> {
+        R.id.action_logout -> {
                 val builder = AlertDialog.Builder(this)
                 builder.setCancelable(false)
                 builder.setTitle(R.string.dialogLogout)

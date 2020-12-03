@@ -66,7 +66,7 @@ class StockOutScanner : AppCompatActivity() {
                                     builder.setCancelable(false)
                                     builder.setMessage("This QR code has been scanned!")
                                     builder.setTitle("Error")
-                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Cancel") { dialog, which -> finish() }
+                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                     val dialog = builder.create()
                                     dialog.show()
                                 } else {
@@ -87,7 +87,7 @@ class StockOutScanner : AppCompatActivity() {
                                                         builder.setCancelable(false)
                                                         builder.setMessage("Quantity needed: $quantity \nQuantity on hand: $currentQty")
                                                         builder.setTitle("Insufficient Stock")
-                                                        builder.setPositiveButton("Noted") { dialog, which -> finish() }
+                                                        builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                                         val dialog = builder.create()
                                                         dialog.show()
                                                     } else {
@@ -102,23 +102,24 @@ class StockOutScanner : AppCompatActivity() {
                                                         builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                                         val dialog = builder.create()
                                                         dialog.show()
-                                                    }
-                                                    val check = shipmentID.isNotEmpty() && productID.isNotEmpty() && quantity.toString().isNotEmpty()
-                                                    if (check) {
-                                                        val shipmentOut = hashMapOf(
-                                                            "shipmentID" to shipmentID,
-                                                            "productID" to productID,
-                                                            "quantity" to quantity.toString(),
-                                                            "time" to time
-                                                        )
-                                                        documentRef.set(shipmentOut)
+
+                                                        val check = shipmentID.isNotEmpty() && productID.isNotEmpty() && quantity.toString().isNotEmpty()
+                                                        if (check) {
+                                                            val shipmentOut = hashMapOf(
+                                                                "shipmentID" to shipmentID,
+                                                                "productID" to productID,
+                                                                "quantity" to quantity.toString(),
+                                                                "time" to time
+                                                            )
+                                                            documentRef.set(shipmentOut)
+                                                        }
                                                     }
                                                 } else {
                                                     val builder = AlertDialog.Builder(this)
                                                     builder.setMessage("Product does not exist in your inventory")
                                                     builder.setTitle("Error")
                                                     builder.setCancelable(false)
-                                                    builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                                                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                                                     val dialog = builder.create()
                                                     dialog.show()
                                                 }
@@ -138,7 +139,7 @@ class StockOutScanner : AppCompatActivity() {
                     val builder = AlertDialog.Builder(this)
                     builder.setMessage(R.string.stockOutError)
                     builder.setTitle(R.string.invalidQR)
-                    builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
+                    builder.setPositiveButton("Noted") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }
                     val dialog = builder.create()
                     dialog.show()
                 }

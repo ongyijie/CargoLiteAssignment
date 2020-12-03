@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_home.*
 import my.edu.tarc.cargolite.*
 
 class HomeFragment : Fragment() {
@@ -33,12 +34,12 @@ class HomeFragment : Fragment() {
         val cardViewStockIn : CardView = root.findViewById(R.id.cardViewStockIn)
         val cardViewStockOut : CardView = root.findViewById(R.id.cardViewStockOut)
         val cardViewShipmentHistory : CardView = root.findViewById(R.id.cardViewShipmentHistory)
-        val cardViewAnalytics : CardView = root.findViewById(R.id.cardViewAnalytics)
+        val cardViewVisualisation : CardView = root.findViewById(R.id.cardViewVisualisation)
         cardViewProducts.setOnClickListener(clickListener)
         cardViewStockIn.setOnClickListener(clickListener)
         cardViewStockOut.setOnClickListener(clickListener)
         cardViewShipmentHistory.setOnClickListener(clickListener)
-        cardViewAnalytics.setOnClickListener(clickListener)
+        cardViewVisualisation.setOnClickListener(clickListener)
 
         return root
     }
@@ -48,15 +49,14 @@ class HomeFragment : Fragment() {
         val intentStockIn = Intent(this@HomeFragment.context, StockInScanner::class.java)
         val intentStockOut = Intent(this@HomeFragment.context, StockOutScanner::class.java)
         val intentShipmentHistory = Intent(this@HomeFragment.context, ShipmentHistory::class.java)
-        //val intentAnalytics = Intent(this@HomeFragment.context, Analytics::class.java)
-
+        val intentVisualisation = Intent(this@HomeFragment.context, Visualisation::class.java)
 
         when (view.id) {
             R.id.cardViewProducts -> startActivity(intentProducts)
             R.id.cardViewStockIn -> startActivity(intentStockIn)
             R.id.cardViewStockOut -> startActivity(intentStockOut)
             R.id.cardViewShipmentHistory -> startActivity(intentShipmentHistory)
-            //R.id.cardViewAnalytics -> startActivity(intentAnalytics)
+            R.id.cardViewVisualisation -> startActivity(intentVisualisation)
         }
     }
 }

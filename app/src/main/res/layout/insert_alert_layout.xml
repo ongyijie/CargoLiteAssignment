@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+    <EditText
+        android:id="@+id/edit_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Name"/>
+
+    <EditText
+        android:id="@+id/edit_trigger_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Trigger Quantity"
+        android:layout_below="@id/edit_product_name"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/buttonInsertNotificationCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_trigger_quantity"
+        android:layout_alignStart="@+id/edit_trigger_quantity"
+        android:layout_marginStart="0dp"
+        android:fontFamily="serif"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonInsertNotificationOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_trigger_quantity"
+
+        android:layout_alignEnd="@+id/edit_trigger_quantity"
+
+        android:fontFamily="serif"
+        android:text="@string/ok" />
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+
+
+</RelativeLayout>
