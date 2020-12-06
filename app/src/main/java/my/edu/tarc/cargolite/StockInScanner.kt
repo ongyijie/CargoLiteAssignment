@@ -42,7 +42,8 @@ class StockInScanner : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        val time: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        val time: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
 
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
@@ -54,7 +55,7 @@ class StockInScanner : AppCompatActivity() {
                 val quantity = (code.substring(16)).toInt()
                 //----------------------------------------------------------------------------------
                 if (shipmentType == "I") {
-                    val documentRef: DocumentReference = InHistoryRef.document("$shipmentID")
+                    val documentRef: DocumentReference = InHistoryRef.document(shipmentID)
                     documentRef.get().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val myDocument = task.result
@@ -69,16 +70,16 @@ class StockInScanner : AppCompatActivity() {
                                     val dialog = builder.create()
                                     dialog.show()
                                 } else {
-                                    //credits : https://firebase.google.com/docs/firestore/manage-data/add-data
+                                    //Credit : https://firebase.google.com/docs/firestore/manage-data/add-data
                                     //Write to firestore inHistory
 
-                                    //Credits: Steffo Dimfelt https://stackoverflow.com/questions/48492993/firestore-get-documentsnapshots-fields-value
-                                    val docRef: DocumentReference = collectionRef.document("$productID")
+                                    //Credit: Steffo Dimfelt https://stackoverflow.com/questions/48492993/firestore-get-documentsnapshots-fields-value
+                                    val docRef: DocumentReference = collectionRef.document(productID)
                                     docRef.get().addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
                                             val document = task.result
                                             if (document != null) {
-                                                var updatedQty = 0
+                                                val updatedQty: Int
                                                 val currentQty = document.getString("productQuantity")
                                                 if (document.exists()) {
                                                     updatedQty = currentQty!!.toInt() + quantity
@@ -91,13 +92,14 @@ class StockInScanner : AppCompatActivity() {
                                                             "shipmentID" to shipmentID,
                                                             "productID" to productID,
                                                             "quantity" to quantity.toString(),
+                                                            "date" to date,
                                                             "time" to time
                                                         )
                                                         documentRef.set(shipmentIn)
                                                     }
 
                                                     val builder = AlertDialog.Builder(this)
-                                                    builder.setMessage("$time \nProduct: $productID \nQuantity: $quantity units")
+                                                    builder.setMessage("$time \n$date \nProduct: $productID \nQuantity: $quantity units")
                                                     builder.setTitle("Stock In")
                                                     builder.setCancelable(false)
                                                     builder.setPositiveButton("Again") { dialog, which -> scanCode() }.setNegativeButton("Finish") { dialog, which -> finish() }

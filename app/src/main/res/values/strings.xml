@@ -23,7 +23,7 @@
     <string name="hint_productname">Product name</string>
     <string name="hint_productID">Product ID</string>
     <string name="hint_productlocation">Shelf level, number etc</string>
-    <string name="hint_unitprice">Unit Price (RM)</string>
+    <string name="hint_unitprice">Unit Price (RM xxx.xx)</string>
     <string name="hint_productQuantity">Quantity</string>
     <string name="cancel">Cancel</string>
     <string name="oldPassword">Current Password</string>
@@ -64,8 +64,19 @@
     <string name="stockInRecords">STOCK IN RECORDS</string>
     <string name="stockOutRecords">STOCK OUT RECORDS</string>
     <string name="edit_product">Edit Product</string>
-    <string name="shipmentId">Shipment Id : </string>
+    <string name="shipmentId">Shipment Id:</string>
     <string name="title_activity_analytics">Analytics</string>
     <string name="title_activity_notification">Notification</string>
     <string name="ok">Ok</string>
+    <string name="time">Time :</string>
+    <string name="date">Date : </string>
+    <string name="stock_value">Stock value (RM):</string>
+    <string name="product_details">Product Details</string>
+    <string name="searchBar">Search here by</string>
+    <string name="sort">Sort By...</string>
+    <string-array name="searchBy">
+        <item>ID</item>
+        <item>Name</item>
+        <item>Location</item>
+    </string-array>
 </resources>

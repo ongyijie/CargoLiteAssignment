@@ -11,7 +11,6 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_stockin_visualisation.*
-import kotlinx.android.synthetic.main.activity_stockout_visualisation.*
 import java.util.*
 
 class StockOutVisualisation : AppCompatActivity() {
@@ -99,10 +98,6 @@ class StockOutVisualisation : AppCompatActivity() {
         for(n in 0 until counter){
             studentList.add(PieEntry(quantity[n].toFloat(),productID[n]))
         }
-//        stockList.add(PieEntry(quantity[0].toFloat(), productID[0]))
-//        stockList.add(PieEntry(quantity[1].toFloat(), productID[1]))
-//        stockList.add(PieEntry(quantity[2].toFloat(), productID[2]))
-//        stockList.add(PieEntry(quantity[3].toFloat(), productID[3]))
         return studentList
     }
 

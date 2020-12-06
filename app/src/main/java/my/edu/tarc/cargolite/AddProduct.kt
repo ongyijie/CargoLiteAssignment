@@ -12,7 +12,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_product.*
-
+import java.util.*
 
 class AddProduct : AppCompatActivity() {
 
@@ -77,7 +77,7 @@ class AddProduct : AppCompatActivity() {
                 builder.setMessage("Confirm action?")
                 builder.setTitle("Add New Product")
                 builder.setPositiveButton("Yes") { dialog, which ->
-                    val docRef: DocumentReference = collectionRef.document("$productID")
+                    val docRef: DocumentReference = collectionRef.document(productID.toUpperCase(Locale.ROOT))
                     docRef.get().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val document = task.result
@@ -118,17 +118,17 @@ class AddProduct : AppCompatActivity() {
         }
     }
 
-    fun writeToDB(productID: String, productName: String, productPrice: String, productLocation: String, productQuantity: String) {
+    private fun writeToDB(productID: String, productName: String, productPrice: String, productLocation: String, productQuantity: String) {
         val product = hashMapOf(
-                "productID" to productID,
-                "productName" to productName,
-                "productPrice" to productPrice,
-                "productLocation" to productLocation,
-                "productQuantity" to productQuantity
+            "productID" to productID.toUpperCase(Locale.ROOT),
+            "productName" to productName.toUpperCase(Locale.ROOT),
+            "productPrice" to productPrice,
+            "productLocation" to productLocation.toUpperCase(Locale.ROOT),
+            "productQuantity" to productQuantity
         )
 
-        collectionRef.document("$productID")
-                .set(product)
+        collectionRef.document(productID.toUpperCase(Locale.ROOT))
+            .set(product)
                 .addOnSuccessListener { documentReference ->
                     Log.d("TAG", "DocumentSnapshot added")
                 }

@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stockOutHistoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/stock_out_history_list"/>
+        tools:listitem="@layout/stock_out_history_list"
+        android:layout_marginTop="45dp"/>
+
+    <TextView
+        android:id="@+id/TextViewSortBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/brown"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:hint="@string/sort"
+        android:inputType="textPersonName"
+        android:textColor="@color/darkbrown"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

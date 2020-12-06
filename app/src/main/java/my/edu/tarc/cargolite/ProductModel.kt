@@ -1,4 +1,4 @@
-//Credits: larn tech https://www.youtube.com/watch?v=c8lfcBYlaC4
+//Credit: larn tech https://www.youtube.com/watch?v=c8lfcBYlaC4
 
 package my.edu.tarc.cargolite
 
@@ -9,5 +9,4 @@ class ProductModel {
     var productLocation: String? = null
     var productQuantity: String? = null
 
-    constructor()
 }

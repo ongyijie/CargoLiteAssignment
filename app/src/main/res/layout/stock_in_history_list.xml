@@ -84,8 +84,56 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textViewProductId"
+            app:layout_constraintStart_toEndOf="@+id/textViewProductQuantity"
             app:layout_constraintTop_toBottomOf="@id/textViewProductIdField" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="serif"
+            android:text="@string/date"
+            android:textColor="@color/darkbrown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewProductQuantity" />
+
+        <TextView
+            android:id="@+id/textViewDateField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="serif"
+            android:textColor="@color/darkbrown"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewDate"
+            app:layout_constraintTop_toBottomOf="@id/textViewProductQuantityField" />
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="serif"
+            android:text="@string/time"
+            android:textColor="@color/darkbrown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDate" />
+
+        <TextView
+            android:id="@+id/textViewTimeField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="serif"
+            android:textColor="@color/darkbrown"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textViewTime"
+            app:layout_constraintTop_toBottomOf="@id/textViewDateField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

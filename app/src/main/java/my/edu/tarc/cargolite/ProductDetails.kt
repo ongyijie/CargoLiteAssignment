@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -14,8 +16,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.*
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.dialog_editproduct.view.*
+import java.util.*
 
 class ProductDetails : AppCompatActivity() {
 
@@ -47,13 +49,7 @@ class ProductDetails : AppCompatActivity() {
         location.text = productLocation
         quantity.text = productQuantity
 
-        val closeBtn: Button = findViewById(R.id.saveBtn)
-        closeBtn.setOnClickListener {
-            val intentProducts = Intent(this, Products::class.java)
-            startActivity(intentProducts)
-        }
-
-        val editBtn: Button = findViewById(R.id.cancelBtn)
+        val editBtn: Button = findViewById(R.id.editBtn)
         editBtn.setOnClickListener {
 
             val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_editproduct, null)
@@ -101,12 +97,13 @@ class ProductDetails : AppCompatActivity() {
 
                     val product = hashMapOf(
                         "productID" to productID,
-                        "productName" to productName,
+                        "productName" to productName.toUpperCase(Locale.ROOT),
                         "productPrice" to productPrice,
-                        "productLocation" to productLocation,
+                        "productLocation" to productLocation.toUpperCase(Locale.ROOT),
+                        "productQuantity" to productQuantity
                     )
 
-                    database.collection("products").document("$productID")
+                    database.collection("products").document(productID)
                         .set(product)
                         .addOnSuccessListener { documentReference ->
                             Log.d("TAG", "DocumentSnapshot added")
@@ -118,7 +115,7 @@ class ProductDetails : AppCompatActivity() {
                             Log.d("TAG", "get failed with ", exception)
                         }
 
-                    val docRef: DocumentReference = collectionRef.document("$productID")
+                    val docRef: DocumentReference = collectionRef.document(productID)
                     docRef.get().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val document = task.result
@@ -127,11 +124,13 @@ class ProductDetails : AppCompatActivity() {
                                 val productName = document.getString("productName")
                                 val productPrice = document.getString("productPrice")
                                 val productLocation = document.getString("productLocation")
+                                val productQuantity = document.getString("productQuantity")
 
                                 id.text = productID
                                 name.text = productName
                                 price.text = productPrice
                                 location.text = productLocation
+                                quantity.text = productQuantity
 
                             } else {
                                 Log.d("LOGGER", "No such document")
@@ -153,5 +152,23 @@ class ProductDetails : AppCompatActivity() {
                 mAlertDialog.dismiss()
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.product_action_bar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.scanner -> startActivity(Intent(this, ProductScanner::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Products::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }

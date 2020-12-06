@@ -20,11 +20,15 @@ FirestoreRecyclerAdapter<OutHistoryModel, StockOutHistoryAdapter.StockOutHistory
         holder.shipmentID.text = model.shipmentID
         holder.productID.text = model.productID
         holder.quantity.text = model.quantity
+        holder.date.text = model.date
+        holder.time.text = model.time
     }
 
     class StockOutHistoryAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var shipmentID: TextView = itemView.textViewShipmentIdField
         var productID: TextView = itemView.textViewProductIdField
         var quantity: TextView = itemView.textViewProductQuantityField
+        var date : TextView = itemView.textViewDateField
+        var time: TextView = itemView.textViewTimeField
     }
 }

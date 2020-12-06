@@ -32,7 +32,7 @@ class IDScanner : AppCompatActivity() {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents != null) {
-                var productID: String = result.contents
+                val productID: String = result.contents
                 val intentAddProduct = Intent().apply {
                     putExtra("productID", productID)
                 }

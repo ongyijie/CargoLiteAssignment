@@ -1,158 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/productDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray">
 
-    <TextView
-        android:id="@+id/detailsID"
+    <LinearLayout
+        android:id="@+id/layoutID"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productID"
-        android:inputType="none"
-        android:text="@string/fieldname_id"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp">
 
-    <TextView
-        android:id="@+id/detailsName"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightbrown">
+
+                <TextView
+                    android:id="@+id/detailsID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="serif"
+                    android:hint="@string/hint_productID"
+                    android:inputType="none"
+                    android:text="@string/fieldname_id"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/editTextID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailsID"
+                    android:layout_alignStart="@+id/detailsID"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/darkbrown"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/detailsID"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsID" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productname"
-        android:inputType="none"
-        android:text="@string/fieldname_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsID"
-        app:layout_constraintTop_toBottomOf="@+id/editTextID" />
-
-    <TextView
-        android:id="@+id/detailsPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_unitprice"
-        android:inputType="none"
-        android:text="@string/fieldname_price"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
-
-    <TextView
-        android:id="@+id/detailsQuantity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productQuantity"
-        android:inputType="none"
-        android:text="@string/fieldname_qty"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsLocation"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
-
-    <TextView
-        android:id="@+id/editTextLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="serif"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/detailsLocation"
-        app:layout_constraintTop_toBottomOf="@+id/detailsLocation" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutID">
 
-    <TextView
-        android:id="@+id/editTextPrice"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightbrown">
+
+                <TextView
+                    android:id="@+id/detailsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="serif"
+                    android:hint="@string/hint_productname"
+                    android:inputType="none"
+                    android:text="@string/fieldname_name"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailsName"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/darkbrown"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/detailsName"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsName" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutPrice"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="serif"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/detailsPrice"
-        app:layout_constraintTop_toBottomOf="@+id/detailsPrice" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutName">
 
-    <TextView
-        android:id="@+id/detailsLocation"
-        android:layout_width="152dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:hint="@string/hint_productlocation"
-        android:inputType="none"
-        android:text="@string/fieldname_location"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/detailsPrice"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPrice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp">
 
-    <TextView
-        android:id="@+id/editTextQuantity"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightbrown">
+
+                <TextView
+                    android:id="@+id/detailsPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="serif"
+                    android:hint="@string/hint_unitprice"
+                    android:inputType="none"
+                    android:text="@string/fieldname_price"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/editTextPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailsPrice"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/darkbrown"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/detailsPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsPrice" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLocation"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="serif"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/detailsQuantity"
-        app:layout_constraintTop_toBottomOf="@+id/detailsQuantity" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPrice">
 
-    <TextView
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="serif"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/detailsName"
-        app:layout_constraintTop_toBottomOf="@+id/detailsName" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewLocation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp">
 
-    <TextView
-        android:id="@+id/editTextID"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightbrown">
+
+                <TextView
+                    android:id="@+id/detailsLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="serif"
+                    android:hint="@string/hint_productlocation"
+                    android:inputType="none"
+                    android:text="@string/fieldname_location"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/editTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailsLocation"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/darkbrown"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/detailsLocation"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsLocation" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutQuantity"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="serif"
-        android:textColor="@color/darkbrown"
-        android:textSize="18sp"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/detailsID"
-        app:layout_constraintTop_toBottomOf="@+id/detailsID" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutLocation">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewQuantity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightbrown">
+
+                <TextView
+                    android:id="@+id/detailsQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="serif"
+                    android:hint="@string/hint_productQuantity"
+                    android:inputType="none"
+                    android:text="@string/fieldname_qty"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/editTextQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailsQuantity"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/darkbrown"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/detailsQuantity"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsQuantity" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="serif"
-        android:text="@string/close"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/cancelBtn"
+        android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -160,7 +375,7 @@
         android:text="@string/edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saveBtn" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

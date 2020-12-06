@@ -10,7 +10,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstraintLayout"
+        android:id="@+id/ConstraintLayoutProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray"
