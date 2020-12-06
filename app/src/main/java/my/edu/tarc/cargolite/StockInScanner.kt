@@ -50,7 +50,7 @@ class StockInScanner : AppCompatActivity() {
 
             if (result.contents != null) {
                 val code = result.contents.toString()
-                if ((code[0].equals("I")) || (code[0].equals("O"))) {
+                if ((code[0].equals("I")) || (code[0].equals("O"))) {       //Check QRcode format
                     val shipmentType = code.substring(0, 1)
                     val shipmentID = code.substring(0, 7)
                     val productID = code.substring(8, 15)
