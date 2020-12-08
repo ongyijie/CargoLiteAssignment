@@ -36,8 +36,8 @@ class StockOutHistory: AppCompatActivity() {
     }//end of OnCreate
 
     fun setOutHistoryRecyclerView() {
-        //ltr try orderby timestamp
-        val query : Query = myCollectionRef.orderBy("time", Query.Direction.DESCENDING)
+        val query : Query = myCollectionRef
+                .orderBy("date", Query.Direction.DESCENDING).orderBy("time", Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<OutHistoryModel> = FirestoreRecyclerOptions.Builder<OutHistoryModel>()
                 .setQuery(query, OutHistoryModel::class.java)
                 .build()
@@ -84,7 +84,7 @@ class StockOutHistory: AppCompatActivity() {
                 Toast.makeText(baseContext, "Sort from latest.", Toast.LENGTH_SHORT).show()
                 TextViewSortBy.text = "Sort By Latest"
                 val query0: Query = myCollectionRef
-                        .orderBy("time", Query.Direction.DESCENDING)
+                        .orderBy("date", Query.Direction.DESCENDING).orderBy("time", Query.Direction.DESCENDING)
                 val firestoreRecyclerOptions0: FirestoreRecyclerOptions<OutHistoryModel> =
                         FirestoreRecyclerOptions.Builder<OutHistoryModel>()
                                 .setQuery(query0, OutHistoryModel::class.java)

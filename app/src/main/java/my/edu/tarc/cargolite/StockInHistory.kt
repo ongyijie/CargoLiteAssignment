@@ -42,8 +42,8 @@ class StockInHistory : AppCompatActivity() {
     */
     //Create function to setup Recycler View
     fun setInHistoryRecyclerView() {
-        //ltr try orderby timestamp
-        val query: Query = myCollectionRef.orderBy("time", Query.Direction.DESCENDING)
+        val query: Query = myCollectionRef
+                .orderBy("date", Query.Direction.DESCENDING).orderBy("time", Query.Direction.DESCENDING)
 
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<InHistoryModel> =
                 FirestoreRecyclerOptions.Builder<InHistoryModel>()

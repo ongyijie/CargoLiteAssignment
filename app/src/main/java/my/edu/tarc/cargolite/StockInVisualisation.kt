@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_stockin_visualisation.*
 
-
 class StockInVisualisation : AppCompatActivity() {
 
     var stockList: ArrayList<PieEntry> = ArrayList()
@@ -43,6 +42,7 @@ class StockInVisualisation : AppCompatActivity() {
                     for (document in task.result!!) {
                         quantity[counter] = document.data.getValue("productQuantity").toString()
                         productID[counter] = document.data.getValue("productID").toString()
+                        quantity[counter] = "0"
 //                            Toast.makeText(baseContext, " " + quantity[counter], Toast.LENGTH_LONG).show()
                         counter++
 
